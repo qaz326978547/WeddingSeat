@@ -5,13 +5,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>婚宴座位表</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Caveat:wght@400&family=LXGW+WenKai+TC&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
+      --bg: #EEF1F4;
+      --gold: #C2AE7E;
+      --gold-deep: #B39E6B;
+      --line: #DDE3E8;
+      --ink: #1f2328;
+      --muted: #7b8086;
+      --wine: #8E2A2A;
       --groom: #2563EB;
       --bride: #B03A2E;
-      --ink: #111827;
-      --muted: #6b7280;
-      --line: #d1d5db;
+      --script: "Great Vibes", "Snell Roundhand", cursive;
+      --hand: "Caveat", "Bradley Hand", cursive;
+      --zh: "LXGW WenKai TC", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
     }
 
     * {
@@ -20,17 +32,17 @@
 
     body {
       margin: 0;
-      background: #f5f3ef;
+      background: var(--bg);
       color: var(--ink);
-      font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      font-family: var(--zh);
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
 
     .wrap {
-      max-width: 1000px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 24px 16px 48px;
+      padding: 20px 16px 48px;
     }
 
     .toolbar {
@@ -39,18 +51,123 @@
       gap: 8px;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .toolbar .hint {
       font-size: 13px;
       color: var(--muted);
+      width: 100%;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .search {
+      position: relative;
+      flex: 1 1 220px;
+      max-width: 320px;
+    }
+
+    .search input {
+      width: 100%;
+      font: inherit;
+      font-size: 15px;
+      padding: 9px 34px 9px 12px;
+      border: 1.5px solid var(--gold);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .search input:focus {
+      border-color: var(--gold-deep);
+      box-shadow: 0 0 0 3px rgba(194, 174, 126, .25);
+    }
+
+    .search .clear {
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      color: var(--muted);
+      padding: 4px 8px;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .search .clear:hover {
+      background: none;
+      color: var(--ink);
+    }
+
+    .seg {
+      display: inline-flex;
+      border: 1.5px solid var(--gold);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .seg button {
+      background: #fff;
+      color: var(--ink);
+      border-radius: 0;
+      padding: 9px 14px;
+    }
+
+    .seg button+button {
+      border-left: 1px solid var(--gold);
+    }
+
+    .seg button:hover {
+      background: #f6f2e8;
+    }
+
+    .seg button[aria-pressed="true"] {
+      background: var(--gold-deep);
+      color: #fff;
+    }
+
+    .seg button[data-side="groom"][aria-pressed="true"] {
+      background: var(--groom);
+    }
+
+    .seg button[data-side="bride"][aria-pressed="true"] {
+      background: var(--bride);
+    }
+
+    .result {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 12px;
+      text-align: center;
+      min-height: 1em;
+    }
+
+    mark {
+      background: #F8E7B0;
+      color: inherit;
+      border-radius: 3px;
+      padding: 0 2px;
+    }
+
+    .card.hit {
+      border-color: var(--gold-deep);
+      border-width: 2.5px;
     }
 
     button {
       font: inherit;
       font-size: 15px;
-      background: #1f2937;
+      background: var(--gold-deep);
       color: #fff;
       border: 0;
       border-radius: 8px;
@@ -59,70 +176,44 @@
     }
 
     button:hover {
-      background: #374151;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 26px;
-      margin: 0 0 4px;
-      letter-spacing: 2px;
-    }
-
-    .summary {
-      text-align: center;
-      font-size: 14px;
-      color: #4b5563;
-      margin: 0 0 16px;
-    }
-
-    .sheet {
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+      background: #a08b58;
     }
 
     .map svg {
       display: block;
       width: 100%;
       height: auto;
-      max-height: 80vh;
+      max-height: 92vh;
     }
 
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-      font-size: 13px;
-      color: #4b5563;
-      margin-top: 10px;
+    .list-title {
+      text-align: center;
+      font-family: var(--script);
+      font-size: 44px;
+      color: var(--wine);
+      font-weight: 400;
+      margin: 28px 0 4px;
     }
 
-    .legend i {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      vertical-align: -2px;
-      margin-right: 5px;
-      background: #fff;
+    .summary {
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 18px;
     }
 
     .list {
       columns: 2;
       column-gap: 16px;
-      margin-top: 20px;
     }
 
     .card {
       break-inside: avoid;
-      border: 2.5px solid #9ca3af;
-      border-radius: 10px;
+      background: #fff;
+      border: 1.5px solid var(--gold);
+      border-radius: 12px;
       padding: 10px 14px;
       margin-bottom: 16px;
-      background: #fff;
     }
 
     .card-head {
@@ -140,14 +231,14 @@
     }
 
     .card-side {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
     }
 
     .card-count {
       margin-left: auto;
       font-size: 16px;
-      color: #374151;
+      color: var(--muted);
       white-space: nowrap;
     }
 
@@ -167,18 +258,18 @@
 
     .guests .x {
       white-space: nowrap;
-      color: #374151;
+      color: var(--muted);
     }
 
     .empty {
       font-size: 16px;
-      color: #9ca3af;
+      color: #a3a8ad;
       margin: 4px 0;
     }
 
     .note {
       margin-top: 8px;
-      border: 1px solid #9ca3af;
+      border: 1px solid var(--gold);
       border-radius: 6px;
       min-height: 56px;
       padding: 4px 8px;
@@ -197,44 +288,27 @@
       .list {
         columns: 1;
       }
-
-      .sheet {
-        padding: 12px;
-      }
     }
 
     @page {
       size: A4;
-      margin: 10mm;
+      margin: 8mm;
     }
 
     @media print {
-      body {
-        background: #fff;
-      }
-
       .wrap {
         max-width: none;
         padding: 0;
       }
 
-      .toolbar {
+      .toolbar,
+      .result {
         display: none;
       }
 
-      .sheet {
-        box-shadow: none;
+      mark {
+        background: none;
         padding: 0;
-        border-radius: 0;
-      }
-
-      h1 {
-        font-size: 20pt;
-      }
-
-      .summary {
-        font-size: 11pt;
-        margin-bottom: 4mm;
       }
 
       .map {
@@ -242,13 +316,21 @@
       }
 
       .map svg {
-        max-height: 235mm;
+        max-height: 275mm;
+      }
+
+      .list-title {
+        font-size: 30pt;
+        margin-top: 0;
+      }
+
+      .summary {
+        font-size: 11pt;
+        margin-bottom: 4mm;
       }
 
       .list {
-        columns: 2;
         column-gap: 6mm;
-        margin-top: 0;
       }
 
       .card {
@@ -262,7 +344,7 @@
       }
 
       .card-side {
-        font-size: 12pt;
+        font-size: 11pt;
       }
 
       .card-count {
@@ -293,28 +375,40 @@
 
 <body>
   <div class="wrap">
+    <div class="map" id="svg"></div>
+    <h2 class="list-title">Seating List</h2>
+    <p class="summary" id="summary"></p>
     <div class="toolbar">
-      <span class="hint">按「匯出 PDF」後，目的地選「另存為 PDF」；如果框線沒有顏色，請勾選「背景圖形」。</span>
-      <button type="button" onclick="exportPdf()">匯出 PDF</button>
-    </div>
-    <div class="sheet">
-      <div class="map">
-        <h1>婚宴座位表・草悟廳</h1>
-        <p class="summary" id="summary"></p>
-        <div id="svg"></div>
-        <div class="legend">
-          <span><i style="border:4px solid var(--groom)"></i>新郎方</span>
-          <span><i style="border:4px solid var(--bride)"></i>新娘方</span>
-          <span><i style="border:1.5px solid var(--bride)"></i>未設定</span>
-          <span><i style="border:1px solid #9ca3af;background:#FEF3C7"></i>未坐滿</span>
-          <span><i style="border:1px solid #9ca3af;background:#A7F3D0"></i>已坐滿</span>
+      <div class="controls">
+        <div class="search">
+          <input id="q" type="search" placeholder="搜尋賓客姓名" autocomplete="off" aria-label="搜尋賓客姓名" />
+          <button type="button" class="clear" id="qClear" aria-label="清除搜尋" hidden>×</button>
+        </div>
+        <div class="seg" role="group" aria-label="顯示方別">
+          <button type="button" data-side="all" aria-pressed="true">全部</button>
+          <button type="button" data-side="groom" aria-pressed="false">新郎方</button>
+          <button type="button" data-side="bride" aria-pressed="false">新娘方</button>
         </div>
       </div>
-      <div class="list" id="list"></div>
+      <button type="button" id="pdfBtn" onclick="exportPdf()">匯出 PDF</button>
+      <span class="hint">匯出 PDF 只會包含目前選的方別（搜尋不影響匯出）；目的地選「另存為 PDF」，並勾選「背景圖形」才會印出底色。</span>
     </div>
+    <p class="result" id="result"></p>
+    <div class="list" id="list"></div>
   </div>
   <script>
-    const DATA = { "generatedAt": "2026/11/8 00:48:53", "layout": [{ "no": 0, "x": 803, "y": 545 }, { "no": 1, "x": 459, "y": 688 }, { "no": 2, "x": 462, "y": 820 }, { "no": 3, "x": 462, "y": 1004 }, { "no": 16, "x": 461, "y": 1145 }, { "no": 4, "x": 597, "y": 890 }, { "no": 5, "x": 735, "y": 684 }, { "no": 6, "x": 733, "y": 840 }, { "no": 7, "x": 733, "y": 997 }, { "no": 8, "x": 866, "y": 684 }, { "no": 9, "x": 864, "y": 840 }, { "no": 10, "x": 864, "y": 997 }, { "no": 11, "x": 1014, "y": 876 }, { "no": 12, "x": 1155, "y": 600 }, { "no": 13, "x": 1154, "y": 731 }, { "no": 14, "x": 1152, "y": 896 }, { "no": 15, "x": 1154, "y": 1049 }], "pillars": [{ "x": 607, "y": 757 }, { "x": 1019, "y": 757 }, { "x": 607, "y": 1049 }, { "x": 1019, "y": 1049 }], "tables": { "0": { "label": null, "capacity": 12, "side": null }, "1": { "label": null, "capacity": 10, "side": "groom" }, "2": { "label": null, "capacity": 10, "side": "groom" }, "3": { "label": null, "capacity": 11, "side": "groom" }, "4": { "label": null, "capacity": 10, "side": "groom" }, "5": { "label": null, "capacity": 10, "side": "groom" }, "6": { "label": null, "capacity": 11, "side": "groom" }, "7": { "label": null, "capacity": 10, "side": "groom" }, "8": { "label": null, "capacity": 10, "side": "bride" }, "9": { "label": null, "capacity": 10, "side": "bride" }, "10": { "label": null, "capacity": 11, "side": "bride" }, "11": { "label": null, "capacity": 10, "side": "bride" }, "12": { "label": null, "capacity": 10, "side": "bride" }, "13": { "label": null, "capacity": 10, "side": "groom" }, "14": { "label": null, "capacity": 10, "side": "groom" }, "15": { "label": null, "capacity": 11, "side": "groom" }, "16": { "label": null, "capacity": 10, "side": "groom" } }, "guests": [{ "t": 0, "name": "周晉弘", "count": 1, "chairs": 0 }, { "t": 0, "name": "林婉娸", "count": 1, "chairs": 0 }, { "t": 0, "name": "曾鳳英", "count": 1, "chairs": 0 }, { "t": 0, "name": "劉志平", "count": 1, "chairs": 0 }, { "t": 0, "name": "阿姨的乾爹", "count": 1, "chairs": 0 }, { "t": 0, "name": "周羽薇", "count": 1, "chairs": 0 }, { "t": 0, "name": "何啟賢", "count": 1, "chairs": 0 }, { "t": 0, "name": "何永森", "count": 1, "chairs": 0 }, { "t": 0, "name": "郝曼麗", "count": 1, "chairs": 0 }, { "t": 0, "name": "施憲隆 (二姑丈)", "count": 1, "chairs": 0 }, { "t": 0, "name": "張勝益 (小姑丈)", "count": 1, "chairs": 0 }, { "t": 0, "name": "劉貴州 (大姑)", "count": 1, "chairs": 0 }, { "t": 1, "name": "郭世欽", "count": 2, "chairs": 0 }, { "t": 1, "name": "楊進生", "count": 2, "chairs": 0 }, { "t": 1, "name": "林志宏", "count": 2, "chairs": 0 }, { "t": 1, "name": "林基寶", "count": 2, "chairs": 0 }, { "t": 1, "name": "林良運", "count": 2, "chairs": 0 }, { "t": 2, "name": "許景傑", "count": 1, "chairs": 0 }, { "t": 2, "name": "劉榕林", "count": 2, "chairs": 0 }, { "t": 2, "name": "李正吉", "count": 1, "chairs": 0 }, { "t": 2, "name": "張耀興", "count": 2, "chairs": 0 }, { "t": 2, "name": "袁菁玉", "count": 2, "chairs": 0 }, { "t": 2, "name": "賴豐廷", "count": 2, "chairs": 0 }, { "t": 3, "name": "二姑", "count": 4, "chairs": 0 }, { "t": 3, "name": "小姑", "count": 5, "chairs": 1 }, { "t": 3, "name": "員外（坤碧）", "count": 2, "chairs": 0 }, { "t": 4, "name": "何佳真", "count": 8, "chairs": 0 }, { "t": 4, "name": "張淙裕", "count": 2, "chairs": 0 }, { "t": 5, "name": "何東祥", "count": 4, "chairs": 0 }, { "t": 5, "name": "劉貴洲 (大姑)", "count": 6, "chairs": 0 }, { "t": 6, "name": "陳品叡", "count": 1, "chairs": 0 }, { "t": 6, "name": "錢予婕", "count": 1, "chairs": 0 }, { "t": 6, "name": "黃靜妍", "count": 1, "chairs": 0 }, { "t": 6, "name": "廖育輝", "count": 1, "chairs": 0 }, { "t": 6, "name": "林德維", "count": 1, "chairs": 0 }, { "t": 6, "name": "吳珮君", "count": 2, "chairs": 0 }, { "t": 6, "name": "張仲承", "count": 2, "chairs": 0 }, { "t": 6, "name": "王冠軒", "count": 1, "chairs": 0 }, { "t": 6, "name": "姜仲桓", "count": 1, "chairs": 0 }, { "t": 7, "name": "傅政維", "count": 2, "chairs": 0 }, { "t": 7, "name": "張博彥", "count": 1, "chairs": 0 }, { "t": 7, "name": "黃弘育", "count": 1, "chairs": 0 }, { "t": 7, "name": "林青雅", "count": 1, "chairs": 0 }, { "t": 7, "name": "童囿維", "count": 1, "chairs": 0 }, { "t": 7, "name": "吳明遠", "count": 1, "chairs": 0 }, { "t": 7, "name": "李合軒", "count": 1, "chairs": 0 }, { "t": 7, "name": "賴仁為", "count": 1, "chairs": 0 }, { "t": 8, "name": "姜正益", "count": 1, "chairs": 0 }, { "t": 8, "name": "朱家樂", "count": 2, "chairs": 0 }, { "t": 8, "name": "曾富田", "count": 4, "chairs": 0 }, { "t": 8, "name": "劉旗旻", "count": 2, "chairs": 0 }, { "t": 8, "name": "周子皓", "count": 1, "chairs": 0 }, { "t": 9, "name": "李季玶", "count": 2, "chairs": 0 }, { "t": 9, "name": "許思婷", "count": 4, "chairs": 0 }, { "t": 9, "name": "鄭嘉怡", "count": 2, "chairs": 0 }, { "t": 9, "name": "江佩芝", "count": 2, "chairs": 0 }, { "t": 10, "name": "廖婉晴", "count": 1, "chairs": 0 }, { "t": 10, "name": "游棋婷", "count": 2, "chairs": 0 }, { "t": 10, "name": "林珮慈", "count": 1, "chairs": 0 }, { "t": 10, "name": "梅駱傑", "count": 1, "chairs": 0 }, { "t": 10, "name": "葉安棋", "count": 1, "chairs": 0 }, { "t": 10, "name": "李宇倫", "count": 1, "chairs": 0 }, { "t": 10, "name": "蔡承祐", "count": 1, "chairs": 0 }, { "t": 10, "name": "陳勻婷", "count": 1, "chairs": 0 }, { "t": 10, "name": "陳逸謙", "count": 1, "chairs": 0 }, { "t": 10, "name": "王靜萓", "count": 1, "chairs": 0 }, { "t": 11, "name": "戴上恩", "count": 2, "chairs": 0 }, { "t": 11, "name": "紀宏憲", "count": 1, "chairs": 0 }, { "t": 11, "name": "黃新暐", "count": 2, "chairs": 0 }, { "t": 11, "name": "吳冠璋", "count": 1, "chairs": 0 }, { "t": 11, "name": "連于慧", "count": 2, "chairs": 0 }, { "t": 11, "name": "盧韋丞", "count": 1, "chairs": 0 }, { "t": 11, "name": "蘇映綺", "count": 1, "chairs": 0 }, { "t": 12, "name": "蔡妹玉", "count": 1, "chairs": 0 }, { "t": 12, "name": "何冬惠", "count": 1, "chairs": 0 }, { "t": 12, "name": "劉姿妘", "count": 2, "chairs": 0 }, { "t": 12, "name": "吳岳信", "count": 1, "chairs": 0 }, { "t": 12, "name": "林沁嫺", "count": 2, "chairs": 0 }, { "t": 12, "name": "林照慶", "count": 1, "chairs": 0 }, { "t": 12, "name": "林俊昇", "count": 2, "chairs": 0 }, { "t": 13, "name": "葉培城.林淑惠", "count": 2, "chairs": 0 }, { "t": 13, "name": "林啟仁", "count": 2, "chairs": 0 }, { "t": 13, "name": "廖宜炳 (阿炳)", "count": 2, "chairs": 0 }, { "t": 13, "name": "陳秀勤", "count": 1, "chairs": 0 }, { "t": 13, "name": "陳信安", "count": 1, "chairs": 0 }, { "t": 13, "name": "盧淑霞.劉人豪", "count": 2, "chairs": 0 }, { "t": 14, "name": "洪永樹", "count": 2, "chairs": 0 }, { "t": 14, "name": "徐順良", "count": 2, "chairs": 0 }, { "t": 14, "name": "李如豐", "count": 2, "chairs": 0 }, { "t": 14, "name": "馮鉦喻", "count": 1, "chairs": 0 }, { "t": 14, "name": "劉永清", "count": 2, "chairs": 0 }, { "t": 15, "name": "林俊廷", "count": 5, "chairs": 1 }, { "t": 15, "name": "許榮智", "count": 2, "chairs": 0 }, { "t": 15, "name": "陳皇珠", "count": 2, "chairs": 0 }, { "t": 15, "name": "盧慶雄", "count": 2, "chairs": 0 }] }
+    const DATA = { "generatedAt": "2026/11/9 05:25:19", "layout": [{ "no": 0, "x": 803, "y": 545 }, { "no": 1, "x": 1155, "y": 600 }, { "no": 2, "x": 1154, "y": 731 }, { "no": 3, "x": 1152, "y": 896 }, { "no": 4, "x": 1154, "y": 1049 }, { "no": 5, "x": 1014, "y": 876 }, { "no": 6, "x": 866, "y": 684 }, { "no": 7, "x": 864, "y": 840 }, { "no": 8, "x": 864, "y": 997 }, { "no": 9, "x": 735, "y": 684 }, { "no": 10, "x": 733, "y": 840 }, { "no": 11, "x": 733, "y": 997 }, { "no": 12, "x": 597, "y": 890 }, { "no": 13, "x": 459, "y": 688 }, { "no": 14, "x": 462, "y": 820 }, { "no": 15, "x": 462, "y": 1004 }, { "no": 16, "x": 461, "y": 1145 }], "pillars": [{ "x": 607, "y": 757 }, { "x": 1019, "y": 757 }, { "x": 607, "y": 1049 }, { "x": 1019, "y": 1049 }], "tables": { "0": { "label": null, "capacity": 12, "side": null }, "1": { "label": null, "capacity": 10, "side": "bride" }, "2": { "label": null, "capacity": 10, "side": "groom" }, "3": { "label": null, "capacity": 10, "side": "groom" }, "4": { "label": null, "capacity": 11, "side": "groom" }, "5": { "label": null, "capacity": 10, "side": "bride" }, "6": { "label": null, "capacity": 10, "side": "bride" }, "7": { "label": null, "capacity": 10, "side": "bride" }, "8": { "label": null, "capacity": 11, "side": "bride" }, "9": { "label": null, "capacity": 10, "side": "groom" }, "10": { "label": null, "capacity": 11, "side": "groom" }, "11": { "label": null, "capacity": 10, "side": "groom" }, "12": { "label": null, "capacity": 10, "side": "groom" }, "13": { "label": null, "capacity": 10, "side": "groom" }, "14": { "label": null, "capacity": 10, "side": "groom" }, "15": { "label": null, "capacity": 11, "side": "groom" }, "16": { "label": null, "capacity": 10, "side": "groom" } }, "guests": [{ "t": 0, "name": "周晉弘", "count": 1, "chairs": 0 }, { "t": 0, "name": "林婉娸", "count": 1, "chairs": 0 }, { "t": 0, "name": "曾鳳英", "count": 1, "chairs": 0 }, { "t": 0, "name": "劉志平", "count": 1, "chairs": 0 }, { "t": 0, "name": "阿姨的乾爹", "count": 1, "chairs": 0 }, { "t": 0, "name": "周羽薇", "count": 1, "chairs": 0 }, { "t": 0, "name": "何啟賢", "count": 1, "chairs": 0 }, { "t": 0, "name": "何永森", "count": 1, "chairs": 0 }, { "t": 0, "name": "郝曼麗", "count": 1, "chairs": 0 }, { "t": 0, "name": "施憲隆 (二姑丈)", "count": 1, "chairs": 0 }, { "t": 0, "name": "張勝益 (小姑丈)", "count": 1, "chairs": 0 }, { "t": 0, "name": "劉貴州 (大姑)", "count": 1, "chairs": 0 }, { "t": 1, "name": "蔡妹玉", "count": 1, "chairs": 0 }, { "t": 1, "name": "何冬惠", "count": 1, "chairs": 0 }, { "t": 1, "name": "劉姿妘", "count": 2, "chairs": 0 }, { "t": 1, "name": "吳岳信", "count": 1, "chairs": 0 }, { "t": 1, "name": "林沁嫺", "count": 2, "chairs": 0 }, { "t": 1, "name": "林照慶", "count": 1, "chairs": 0 }, { "t": 1, "name": "林俊昇", "count": 2, "chairs": 0 }, { "t": 2, "name": "葉培城.林淑惠", "count": 2, "chairs": 0 }, { "t": 2, "name": "林啟仁", "count": 2, "chairs": 0 }, { "t": 2, "name": "廖宜炳 (阿炳)", "count": 2, "chairs": 0 }, { "t": 2, "name": "陳秀勤", "count": 1, "chairs": 0 }, { "t": 2, "name": "陳信安", "count": 1, "chairs": 0 }, { "t": 2, "name": "盧淑霞.劉人豪", "count": 2, "chairs": 0 }, { "t": 3, "name": "洪永樹", "count": 2, "chairs": 0 }, { "t": 3, "name": "徐順良", "count": 2, "chairs": 0 }, { "t": 3, "name": "李如豐", "count": 2, "chairs": 0 }, { "t": 3, "name": "馮鉦喻", "count": 1, "chairs": 0 }, { "t": 3, "name": "劉永清", "count": 2, "chairs": 0 }, { "t": 4, "name": "林俊廷", "count": 5, "chairs": 1 }, { "t": 4, "name": "許榮智", "count": 2, "chairs": 0 }, { "t": 4, "name": "陳皇珠", "count": 2, "chairs": 0 }, { "t": 4, "name": "盧慶雄", "count": 2, "chairs": 0 }, { "t": 5, "name": "戴上恩", "count": 2, "chairs": 0 }, { "t": 5, "name": "紀宏憲", "count": 1, "chairs": 0 }, { "t": 5, "name": "黃新暐", "count": 2, "chairs": 0 }, { "t": 5, "name": "吳冠璋", "count": 1, "chairs": 0 }, { "t": 5, "name": "連于慧", "count": 2, "chairs": 0 }, { "t": 5, "name": "盧韋丞", "count": 1, "chairs": 0 }, { "t": 5, "name": "蘇映綺", "count": 1, "chairs": 0 }, { "t": 6, "name": "姜正益", "count": 1, "chairs": 0 }, { "t": 6, "name": "朱家樂", "count": 2, "chairs": 0 }, { "t": 6, "name": "曾富田", "count": 4, "chairs": 0 }, { "t": 6, "name": "劉旗旻", "count": 2, "chairs": 0 }, { "t": 6, "name": "周子皓", "count": 1, "chairs": 0 }, { "t": 7, "name": "李季玶", "count": 2, "chairs": 0 }, { "t": 7, "name": "許思婷", "count": 4, "chairs": 0 }, { "t": 7, "name": "鄭嘉怡", "count": 2, "chairs": 0 }, { "t": 7, "name": "江佩芝", "count": 2, "chairs": 0 }, { "t": 8, "name": "廖婉晴", "count": 1, "chairs": 0 }, { "t": 8, "name": "游棋婷", "count": 2, "chairs": 0 }, { "t": 8, "name": "林珮慈", "count": 1, "chairs": 0 }, { "t": 8, "name": "梅駱傑", "count": 1, "chairs": 0 }, { "t": 8, "name": "葉安棋", "count": 1, "chairs": 0 }, { "t": 8, "name": "李宇倫", "count": 1, "chairs": 0 }, { "t": 8, "name": "蔡承祐", "count": 1, "chairs": 0 }, { "t": 8, "name": "陳勻婷", "count": 1, "chairs": 0 }, { "t": 8, "name": "陳逸謙", "count": 1, "chairs": 0 }, { "t": 8, "name": "王靜萓", "count": 1, "chairs": 0 }, { "t": 9, "name": "何東祥", "count": 4, "chairs": 0 }, { "t": 9, "name": "劉貴洲 (大姑)", "count": 6, "chairs": 0 }, { "t": 10, "name": "陳品叡", "count": 1, "chairs": 0 }, { "t": 10, "name": "錢予婕", "count": 1, "chairs": 0 }, { "t": 10, "name": "黃靜妍", "count": 1, "chairs": 0 }, { "t": 10, "name": "廖育輝", "count": 1, "chairs": 0 }, { "t": 10, "name": "林德維", "count": 1, "chairs": 0 }, { "t": 10, "name": "吳珮君", "count": 2, "chairs": 0 }, { "t": 10, "name": "張仲承", "count": 2, "chairs": 0 }, { "t": 10, "name": "王冠軒", "count": 1, "chairs": 0 }, { "t": 10, "name": "姜仲桓", "count": 1, "chairs": 0 }, { "t": 11, "name": "傅政維", "count": 2, "chairs": 0 }, { "t": 11, "name": "張博彥", "count": 1, "chairs": 0 }, { "t": 11, "name": "黃弘育", "count": 1, "chairs": 0 }, { "t": 11, "name": "林青雅", "count": 1, "chairs": 0 }, { "t": 11, "name": "童囿維", "count": 1, "chairs": 0 }, { "t": 11, "name": "吳明遠", "count": 1, "chairs": 0 }, { "t": 11, "name": "李合軒", "count": 1, "chairs": 0 }, { "t": 11, "name": "賴仁為", "count": 1, "chairs": 0 }, { "t": 12, "name": "何佳真", "count": 8, "chairs": 0 }, { "t": 12, "name": "張淙裕", "count": 2, "chairs": 0 }, { "t": 13, "name": "郭世欽", "count": 2, "chairs": 0 }, { "t": 13, "name": "楊進生", "count": 2, "chairs": 0 }, { "t": 13, "name": "林志宏", "count": 2, "chairs": 0 }, { "t": 13, "name": "林基寶", "count": 2, "chairs": 0 }, { "t": 13, "name": "林良運", "count": 2, "chairs": 0 }, { "t": 14, "name": "許景傑", "count": 1, "chairs": 0 }, { "t": 14, "name": "劉榕林", "count": 2, "chairs": 0 }, { "t": 14, "name": "李正吉", "count": 1, "chairs": 0 }, { "t": 14, "name": "張耀興", "count": 2, "chairs": 0 }, { "t": 14, "name": "袁菁玉", "count": 2, "chairs": 0 }, { "t": 14, "name": "賴豐廷", "count": 2, "chairs": 0 }, { "t": 15, "name": "二姑", "count": 4, "chairs": 0 }, { "t": 15, "name": "小姑", "count": 5, "chairs": 1 }, { "t": 15, "name": "員外（坤碧）", "count": 2, "chairs": 0 }] }
+    // 站牌圖座標（依參考圖繪製）
+    const POS = {
+      0: [484, 305],
+      1: [834, 321], 2: [834, 481], 3: [834, 628], 4: [835, 775],
+      5: [684, 628],
+      6: [567, 435], 7: [567, 592], 8: [567, 749],
+      9: [392, 435], 10: [392, 592], 11: [392, 749],
+      12: [278, 630],
+      13: [149, 432], 14: [149, 592], 15: [149, 739], 16: [150, 886],
+    }
+    const PILLARS = [[278, 480], [683, 480], [278, 766], [683, 766]]
     const SIDE = { groom: { label: '新郎方', color: '#2563EB' }, bride: { label: '新娘方', color: '#B03A2E' } }
     const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c])
     const info = (no) => DATA.tables[no] || {}
@@ -323,73 +417,170 @@
     const seated = (no) => at(no).reduce((s, g) => s + g.count, 0)
     const base = (no) => (no === 0 ? '主桌' : `第 ${no} 桌`)
     const name = (no) => (info(no).label ? `${base(no)}・${info(no).label}` : base(no))
-    const fill = (no) => { const s = seated(no); return s === 0 ? '#FFFFFF' : s >= cap(no) ? '#A7F3D0' : '#FEF3C7' }
+    const NOS = Object.keys(POS).map(Number).sort((a, b) => a - b)
+
+    // 畫面狀態：搜尋字串、顯示方別（all / groom / bride）
+    const state = { q: '', side: 'all' }
+    const norm = (s) => String(s).toLowerCase().replace(/\s+/g, '')
+    // 主桌不分方別，新郎方、新娘方都顯示
+    const inSide = (no) => no === 0 || state.side === 'all' || info(no).side === state.side
+    const visibleNos = () => NOS.filter(inSide)
+    const isHit = (g) => state.q !== '' && norm(g.name).includes(state.q)
+    const hitTables = () => new Set(DATA.guests.filter((g) => inSide(g.t) && isHit(g)).map((g) => g.t))
+    function highlight(name) {
+      if (!state.q) return esc(name)
+      // 以去空白後的字元比對，逐字標記符合的區段
+      const chars = [...name]
+      const flat = []
+      chars.forEach((c, i) => { if (!/\s/.test(c)) flat.push([c.toLowerCase(), i]) })
+      const str = flat.map((x) => x[0]).join('')
+      const hit = new Set()
+      let from = 0, k
+      while ((k = str.indexOf(state.q, from)) !== -1) { for (let j = k; j < k + state.q.length; j++) hit.add(flat[j][1]); from = k + 1 }
+      return chars.map((c, i) => (hit.has(i) ? `<mark>${esc(c)}</mark>` : esc(c))).join('').replace(/<\/mark><mark>/g, '')
+    }
 
     function renderMap() {
-      const t = DATA.layout.map((l) => {
-        const side = SIDE[info(l.no).side]
-        const over = cap(l.no) > 10
-        return `<g>
-      <circle cx="${l.x}" cy="${l.y}" r="45" fill="${fill(l.no)}" stroke="${side ? side.color : '#B03A2E'}" stroke-width="${side ? 8 : 2.5}"/>
-      <text x="${l.x}" y="${l.y - 4}" text-anchor="middle" font-size="30" font-weight="700" fill="#1F2937">${l.no === 0 ? '主桌' : l.no}</text>
-      <text x="${l.x}" y="${l.y + 28}" text-anchor="middle" font-size="20" fill="${over ? '#B45309' : '#4B5563'}" font-weight="${over ? 700 : 400}">${seated(l.no)}/${cap(l.no)}</text>
-      ${info(l.no).label ? `<text x="${l.x}" y="${l.y + 71}" text-anchor="middle" font-size="22" fill="#374151">${esc(info(l.no).label)}</text>` : ''}
+      const G = 'var(--gold)'
+      const hits = hitTables()
+      const tables = NOS.map((no) => {
+        const [x, y] = POS[no]
+        const r = 46
+        const dim = !inSide(no) || (state.q !== '' && !hits.has(no))
+        const ring = hits.has(no)
+          ? `<circle cx="${x}" cy="${y}" r="${r + 11}" fill="none" stroke="var(--gold-deep)" stroke-width="5" stroke-dasharray="10 6"/>`
+          : ''
+        const label = no === 0
+          ? `<text x="${x}" y="${y + 11}" text-anchor="middle" font-family="var(--zh)" font-size="30" fill="#1f2328">主桌</text>`
+          : `<text x="${x}" y="${y + 15}" text-anchor="middle" font-family="var(--hand)" font-size="46" fill="#1f2328">${no}</text>`
+        return `<g opacity="${dim ? 0.25 : 1}">
+      ${ring}
+      <path d="M${x - 4},${y - r - 20} q-3,6 2,10 q5,4 2,10" fill="none" stroke="#CBD3DA" stroke-width="1.6"/>
+      <circle cx="${x}" cy="${y}" r="${r}" fill="#fff" stroke="#DDE3E8" stroke-width="1.6"/>
+      ${label}
     </g>`
       }).join('')
-      document.getElementById('svg').innerHTML = `<svg viewBox="370 200 930 1310" role="img" aria-label="草悟廳座位圖">
-    <g fill="none" stroke="#B03A2E" stroke-width="6" stroke-linecap="square">
-      <path d="M585,225 L950,225 M585,225 L585,540 Q585,590 535,590 L412,590 Q390,590 390,612 L390,1272 L425,1272"/>
-      <path d="M500,1272 L555,1272 L555,1360"/><path d="M642,1275 L735,1275 L735,1320"/><path d="M735,1360 L880,1360"/>
-      <path d="M1012,1360 L1278,1360 L1278,210 L1105,210 L1105,240 L1045,240"/><path d="M1090,240 L1090,405 L1278,405"/><path d="M585,325 L988,325"/>
+      const hatch = Array.from({ length: 7 }, (_, i) => {
+        const x = 50 + i * 19
+        return `<line x1="${x}" y1="${1125 + i * 6}" x2="${x - 10}" y2="${1235}" />`
+      }).join('')
+      document.getElementById('svg').innerHTML = `<svg viewBox="30 0 930 1272" role="img" aria-label="座位站牌圖">
+    <rect x="30" y="0" width="930" height="1272" fill="#EEF1F4"/>
+    <g fill="none" stroke="${G}" stroke-width="2.2" stroke-linejoin="round">
+      <!-- 外牆 -->
+      <path d="M258,56 L258,262 Q258,315 205,315 L112,315 Q64,315 64,363 L64,984 L403,984 L403,1070 L495,1070"/>
+      <path d="M495,1064 L495,1076 M583,1064 L583,1076"/>
+      <path d="M583,1070 L937,1070 L937,131 L751,131 L751,0"/>
+      <!-- 舞台 -->
+      <path d="M258,56 L652,56 L652,135 Q455,220 258,135"/>
+      <!-- 樓梯 -->
+      <path d="M30,1115 Q140,1110 218,1188"/>
     </g>
-    <path d="M627,327 L988,327 L988,408 Q805,490 627,408 Z" fill="#FBEFEC" stroke="#B03A2E" stroke-width="5"/>
-    <text x="805" y="390" text-anchor="middle" font-size="34" fill="#7A2A20" font-weight="600">舞台</text>
-    ${DATA.pillars.map((p) => `<circle cx="${p.x}" cy="${p.y}" r="27" fill="#B03A2E"/>`).join('')}
-    <path d="M950,1440 L950,1405 M935,1418 L950,1400 L965,1418" stroke="#B03A2E" stroke-width="6" fill="none"/>
-    <text x="950" y="1490" text-anchor="middle" font-size="32" fill="#B03A2E">入口</text>
-    ${t}
+    <g stroke="${G}" stroke-width="2" fill="none">${hatch}</g>
+    <text x="455" y="130" text-anchor="middle" font-family="var(--script)" font-size="56" fill="var(--wine)">Stage</text>
+    <!-- 廁所 -->
+    <rect x="666" y="-6" width="52" height="36" rx="6" fill="none" stroke="${G}" stroke-width="2"/>
+    <text x="692" y="22" text-anchor="middle" font-size="22" fill="${G}">🚻</text>
+    <path d="M706,128 C700,110 712,98 705,80 C700,66 708,58 707,46 M700,56 L707,44 L713,56" fill="none" stroke="${G}" stroke-width="2"/>
+    <!-- 中央裝飾線 -->
+    <path d="M478,420 C490,450 468,480 480,510 C492,545 466,575 478,610 C490,645 466,680 478,715 C488,745 476,770 484,786" fill="none" stroke="${G}" stroke-width="4" stroke-linecap="round"/>
+    <!-- 柱子 -->
+    ${PILLARS.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="27" fill="var(--gold-deep)"/>`).join('')}
+    ${tables}
+    <!-- Candy Bar -->
+    <rect x="641" y="971" width="249" height="84" rx="10" fill="#fff" stroke="#DDE3E8" stroke-width="1.6"/>
+    <text x="765" y="1027" text-anchor="middle" font-family="var(--script)" font-size="44" fill="#1f2328">Candy Bar</text>
+    <!-- 入口 -->
+    <path d="M540,1128 L540,1062 M530,1080 L540,1058 L550,1080" fill="none" stroke="${G}" stroke-width="3" stroke-linejoin="round"/>
+    <text x="540" y="1168" text-anchor="middle" font-family="var(--script)" font-size="42" fill="${G}">Entrance</text>
+    <!-- 收禮桌、電梯 -->
+    <rect x="653" y="1084" width="102" height="84" rx="8" fill="${G}"/>
+    <text x="704" y="1117" text-anchor="middle" font-family="var(--zh)" font-size="25" fill="#fff">男方</text>
+    <text x="704" y="1152" text-anchor="middle" font-family="var(--zh)" font-size="25" fill="#fff">收禮桌</text>
+    <rect x="763" y="1084" width="102" height="84" rx="8" fill="${G}"/>
+    <text x="814" y="1117" text-anchor="middle" font-family="var(--zh)" font-size="25" fill="#fff">女方</text>
+    <text x="814" y="1152" text-anchor="middle" font-family="var(--zh)" font-size="25" fill="#fff">收禮桌</text>
+    <rect x="883" y="1081" width="70" height="191" fill="${G}"/>
+    <line x1="883" y1="1145" x2="953" y2="1145" stroke="#fff" stroke-opacity=".5"/>
+    <line x1="883" y1="1210" x2="953" y2="1210" stroke="#fff" stroke-opacity=".5"/>
+    <text x="918" y="1166" text-anchor="middle" font-family="var(--zh)" font-size="40" fill="#fff">電</text>
+    <text x="918" y="1224" text-anchor="middle" font-family="var(--zh)" font-size="40" fill="#fff">梯</text>
   </svg>`
     }
 
     function renderList() {
-      const nos = DATA.layout.map((l) => l.no).sort((a, b) => a - b)
+      const hits = hitTables()
+      const nos = visibleNos().filter((no) => !state.q || hits.has(no))
+      const result = document.getElementById('result')
+      if (state.q) {
+        const n = DATA.guests.filter((g) => inSide(g.t) && isHit(g)).length
+        result.textContent = n ? `找到 ${n} 位賓客，在 ${nos.map(base).join('、')}` : '找不到符合的賓客'
+      } else result.textContent = ''
       document.getElementById('list').innerHTML = nos.map((no) => {
         const side = SIDE[info(no).side]
         const gs = at(no)
         const chairs = gs.filter((g) => g.chairs > 0)
         const total = chairs.reduce((s, g) => s + g.chairs, 0)
-        return `<div class="card" style="border-color:${side ? side.color : '#9CA3AF'}">
+        return `<div class="card${hits.has(no) ? ' hit' : ''}">
       <div class="card-head">
         <span class="card-name">${esc(name(no))}</span>
         ${side ? `<span class="card-side" style="color:${side.color}">${side.label}</span>` : ''}
         <span class="card-count">${seated(no)}/${cap(no)} 人</span>
       </div>
-      ${gs.length ? `<ul class="guests">${gs.map((g) => `<li><span>${esc(g.name)}</span><span class="x">×${g.count}</span></li>`).join('')}</ul>` : '<p class="empty">尚未安排</p>'}
+      ${gs.length ? `<ul class="guests">${gs.map((g) => `<li><span>${highlight(g.name)}</span><span class="x">×${g.count}</span></li>`).join('')}</ul>` : '<p class="empty">尚未安排</p>'}
       <div class="note"><div>備註</div>${total ? `<div class="chair">兒童座椅 ${total} 張（${chairs.map((g) => `${esc(g.name)} ${g.chairs}`).join('、')}）</div>` : ''}</div>
     </div>`
       }).join('')
     }
 
     function renderSummary() {
-      const nos = DATA.layout.map((l) => l.no)
+      const nos = visibleNos()
       const total = nos.reduce((s, n) => s + seated(n), 0)
       const capTotal = nos.reduce((s, n) => s + cap(n), 0)
-      const stat = (k) => { const ns = nos.filter((n) => info(n).side === k); return `${SIDE[k].label} ${ns.length} 桌 ${ns.reduce((s, n) => s + seated(n), 0)} 人` }
-      const chairs = DATA.guests.reduce((s, g) => s + g.chairs, 0)
-      document.getElementById('summary').textContent =
-        `已安排 ${total} 人／總座位 ${capTotal}・${stat('groom')}・${stat('bride')}・兒童座椅 ${chairs} 張・資料時間 ${DATA.generatedAt}`
+      const stat = (k) => { const ns = NOS.filter((n) => info(n).side === k); return `${SIDE[k].label} ${ns.length} 桌 ${ns.reduce((s, n) => s + seated(n), 0)} 人` }
+      const chairs = DATA.guests.filter((g) => nos.includes(g.t)).reduce((s, g) => s + g.chairs, 0)
+      const head = state.side === 'all'
+        ? `已安排 ${total} 人／總座位 ${capTotal}・${stat('groom')}・${stat('bride')}`
+        : `${SIDE[state.side].label}名單：主桌＋${nos.filter((n) => n !== 0).length} 桌・已安排 ${total} 人／總座位 ${capTotal}`
+      document.getElementById('summary').textContent = `${head}・兒童座椅 ${chairs} 張・資料時間 ${DATA.generatedAt}`
+      document.querySelector('.list-title').textContent = state.side === 'all' ? 'Seating List' : state.side === 'groom' ? "Groom's Guests" : "Bride's Guests"
+      document.getElementById('pdfBtn').textContent = state.side === 'all' ? '匯出 PDF' : `匯出 PDF（${SIDE[state.side].label}）`
     }
 
     function exportPdf() {
       const d = new Date()
       const p = (n) => String(n).padStart(2, '0')
       const old = document.title
-      document.title = `座位表_${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}`
-      window.addEventListener('afterprint', () => { document.title = old }, { once: true })
+      const keepQ = state.q
+      state.q = ''
+      render()
+      const tag = state.side === 'all' ? '' : `_${SIDE[state.side].label}`
+      document.title = `座位表${tag}_${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}`
+      window.addEventListener('afterprint', () => {
+        document.title = old
+        state.q = keepQ
+        render()
+      }, { once: true })
       window.print()
     }
 
-    renderMap(); renderList(); renderSummary()
+    function render() { renderMap(); renderList(); renderSummary() }
+
+    const qInput = document.getElementById('q')
+    const qClear = document.getElementById('qClear')
+    qInput.addEventListener('input', () => {
+      state.q = norm(qInput.value)
+      qClear.hidden = !qInput.value
+      render()
+    })
+    qClear.addEventListener('click', () => { qInput.value = ''; state.q = ''; qClear.hidden = true; render(); qInput.focus() })
+    document.querySelectorAll('.seg button').forEach((b) => b.addEventListener('click', () => {
+      state.side = b.dataset.side
+      document.querySelectorAll('.seg button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)))
+      render()
+    }))
+
+    render()
   </script>
 </body>
 
