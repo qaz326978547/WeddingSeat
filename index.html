@@ -256,9 +256,35 @@
       line-height: 1.55;
     }
 
+    .guests .guest-name {
+      flex: 1;
+      min-width: 0;
+    }
+
     .guests .x {
+      flex: 0 0 44px;
+      text-align: right;
       white-space: nowrap;
       color: var(--muted);
+    }
+
+    .guests .actual {
+      flex: 0 0 48px;
+      margin-left: 26px;
+      text-align: center;
+      font-weight: 700;
+      border-bottom: 1.5px solid var(--gold);
+    }
+
+    .guests .guests-head {
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+
+    .guests .guests-head .actual {
+      font-weight: 400;
+      border-bottom: 0;
     }
 
     .empty {
@@ -284,6 +310,449 @@
       color: var(--ink);
     }
 
+    [hidden] {
+      display: none !important;
+    }
+
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: #fff;
+      border-bottom: 1.5px solid var(--gold);
+    }
+
+    .topnav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 120px;
+      min-height: 44px;
+      padding: 8px 20px;
+      border-radius: 8px;
+      color: var(--ink);
+      font-size: 17px;
+      text-decoration: none;
+    }
+
+    .topnav a:hover {
+      background: #f6f2e8;
+    }
+
+    .topnav a[aria-current="page"] {
+      background: var(--gold-deep);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .ck-title {
+      text-align: center;
+      font-family: var(--script);
+      font-size: 44px;
+      color: var(--wine);
+      font-weight: 400;
+      margin: 8px 0 4px;
+    }
+
+    .ck-device {
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 4px;
+    }
+
+    .ck-device strong {
+      color: var(--ink);
+    }
+
+    .ck-stats {
+      text-align: center;
+      font-size: 15px;
+      margin: 0 0 14px;
+    }
+
+    .ck-alert {
+      background: #FBEDEB;
+      border: 1.5px solid var(--bride);
+      border-radius: 8px;
+      color: var(--wine);
+      padding: 10px 12px;
+      margin: 10px 0;
+      font-size: 15px;
+    }
+
+    .ck-warn {
+      background: #FDF6E3;
+      border: 1.5px solid var(--gold-deep);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin: 10px 0;
+      font-size: 15px;
+    }
+
+    .ck-flash {
+      text-align: center;
+      font-size: 15px;
+      color: var(--ink);
+      margin: 0 0 10px;
+    }
+
+    .ck-print {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .ck-print label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 44px;
+      font-size: 15px;
+    }
+
+    .btn-line {
+      background: #fff;
+      color: var(--ink);
+      border: 1.5px solid var(--gold);
+    }
+
+    .btn-line:hover {
+      background: #f6f2e8;
+    }
+
+    .ck-listhead {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .ck-rows {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 10px;
+    }
+
+    .ck-row {
+      display: block;
+      width: 100%;
+      background: #fff;
+      color: var(--ink);
+      border: 1.5px solid var(--gold);
+      border-radius: 12px;
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .ck-row:hover {
+      background: #fbf9f3;
+    }
+
+    .ck-row.is-done {
+      background: #F3F6F0;
+      border-color: #A9B89A;
+    }
+
+    .ck-row-top {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ck-name {
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .ck-tag {
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .ck-tag.main {
+      background: var(--wine);
+      color: #fff;
+      border-radius: 4px;
+      padding: 1px 6px;
+    }
+
+    .ck-status {
+      margin-left: auto;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .ck-row-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px 14px;
+      margin-top: 4px;
+      font-size: 15px;
+    }
+
+    .ck-row-meta b {
+      font-size: 17px;
+    }
+
+    .ck-chair {
+      font-weight: 700;
+      color: var(--wine);
+    }
+
+    .ck-usernote {
+      margin-top: 4px;
+      font-size: 14px;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .ck-panel {
+      max-width: 560px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1.5px solid var(--gold);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .ck-back {
+      display: block;
+      margin: 0 auto 10px;
+      width: 100%;
+      max-width: 560px;
+      min-height: 44px;
+    }
+
+    .ck-panel h3 {
+      font-size: 28px;
+      margin: 0 0 6px;
+      overflow-wrap: anywhere;
+    }
+
+    .ck-tally {
+      font-size: 20px;
+      margin: 10px 0 0;
+    }
+
+    .ck-tally b {
+      font-size: 30px;
+    }
+
+    .ck-primary {
+      display: block;
+      width: 100%;
+      min-height: 60px;
+      font-size: 21px;
+      font-weight: 700;
+      margin: 14px 0 0;
+    }
+
+    .ck-field {
+      display: block;
+      margin-top: 14px;
+      font-size: 15px;
+    }
+
+    .ck-field input,
+    .ck-field textarea {
+      display: block;
+      width: 100%;
+      margin-top: 4px;
+      font: inherit;
+      font-size: 18px;
+      padding: 10px 12px;
+      border: 1.5px solid var(--gold);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .ck-field input:focus,
+    .ck-field textarea:focus {
+      outline: none;
+      border-color: var(--gold-deep);
+      box-shadow: 0 0 0 3px rgba(194, 174, 126, .25);
+    }
+
+    .ck-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .ck-actions button {
+      flex: 1 1 140px;
+      min-height: 48px;
+    }
+
+    .ck-modes {
+      display: flex;
+      margin-top: 14px;
+    }
+
+    .ck-modes button {
+      flex: 1;
+      min-height: 46px;
+    }
+
+    .ck-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 6px 0 0;
+    }
+
+    .ck-done {
+      text-align: center;
+    }
+
+    .ck-done-label {
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .ck-done-table {
+      font-size: clamp(64px, 19vw, 112px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--wine);
+    }
+
+    .ck-done-count {
+      font-size: clamp(30px, 8vw, 46px);
+      font-weight: 700;
+    }
+
+    .ck-done-name {
+      font-size: 20px;
+      margin-top: 6px;
+    }
+
+    .ck-pending {
+      margin-top: 28px;
+      border-top: 1.5px solid var(--gold);
+      padding-top: 14px;
+    }
+
+    .ck-pending h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .ck-pending-item {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      background: #FDF6E3;
+      border: 1.5px dashed var(--gold-deep);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+    }
+
+    .ck-pending-item.merged {
+      background: #fff;
+      border-style: solid;
+      border-color: var(--line);
+      color: var(--muted);
+    }
+
+    .ck-pending-item button {
+      min-height: 44px;
+    }
+
+    #ckSheet {
+      display: none;
+    }
+
+    .sheet-page {
+      width: 194mm;
+      background: #fff;
+      color: #000;
+    }
+
+    .sheet-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 4mm;
+      padding-bottom: 2mm;
+      font-size: 10pt;
+    }
+
+    .sheet-head strong {
+      font-size: 16pt;
+    }
+
+    .sheet-table {
+      width: 194mm;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .sheet-table th,
+    .sheet-table td {
+      border: .3mm solid #333;
+      padding: .8mm 1.5mm;
+      text-align: center;
+      vertical-align: middle;
+      overflow-wrap: anywhere;
+    }
+
+    .sheet-table th {
+      background: #EFEAD9;
+      font-size: 11pt;
+      height: 8mm;
+    }
+
+    .sheet-table td {
+      font-size: 11pt;
+      height: 11mm;
+    }
+
+    .sheet-table td.sheet-name {
+      font-size: 13pt;
+      text-align: left;
+    }
+
+    .sheet-table td.sheet-note {
+      font-size: 10pt;
+      text-align: left;
+    }
+
+    .sheet-table tr {
+      break-inside: avoid;
+    }
+
+    .sheet-box {
+      display: inline-block;
+      width: 5.5mm;
+      height: 5.5mm;
+      border: .4mm solid #000;
+      vertical-align: middle;
+    }
+
+    .sheet-foot {
+      padding-top: 2mm;
+      font-size: 9pt;
+      line-height: 1.4;
+    }
+
     @media (max-width: 640px) {
       .list {
         columns: 1;
@@ -296,6 +765,30 @@
     }
 
     @media print {
+      .topnav {
+        display: none;
+      }
+
+      body.route-checkin {
+        background: #fff;
+      }
+
+      body.route-checkin .ck-app {
+        display: none;
+      }
+
+      body.route-checkin #ckSheet {
+        display: block;
+      }
+
+      .sheet-page {
+        break-after: page;
+      }
+
+      .sheet-page:last-child {
+        break-after: auto;
+      }
+
       .wrap {
         max-width: none;
         padding: 0;
@@ -355,6 +848,10 @@
         font-size: 15pt;
       }
 
+      .guests .guests-head {
+        font-size: 10pt;
+      }
+
       .empty {
         font-size: 13pt;
       }
@@ -374,7 +871,13 @@
 </head>
 
 <body>
-  <div class="wrap">
+  <!-- 簽到表暫停使用：要恢復時拿掉這段與下方 viewCheckin、script 內的註解
+  <nav class="topnav" aria-label="頁面切換">
+    <a href="#/seating" data-route="seating">座位表</a>
+    <a href="#/checkin" data-route="checkin">簽到表</a>
+  </nav>
+  -->
+  <div class="wrap" id="viewSeating">
     <div class="map" id="svg"></div>
     <h2 class="list-title">Seating List</h2>
     <p class="summary" id="summary"></p>
@@ -396,8 +899,42 @@
     <p class="result" id="result"></p>
     <div class="list" id="list"></div>
   </div>
+  <!-- 簽到表暫停使用
+  <div id="viewCheckin" hidden>
+    <div class="wrap ck-app">
+      <h2 class="ck-title">Check-in</h2>
+      <p class="ck-device"><strong>紀錄儲存在此裝置</strong>，不會上傳或同步。同一組由指定的裝置登記，主桌及跨方例外由現場指定一方負責。</p>
+      <p class="ck-stats" id="ckStats"></p>
+      <div class="ck-alert" id="ckLoadErr" role="alert" hidden>無法讀取此裝置的簽到紀錄，請先改用紙本並通知總召。</div>
+      <div id="ckTools">
+        <div class="toolbar">
+          <div class="controls">
+            <div class="search">
+              <input id="ckQ" type="search" placeholder="搜尋姓名、暱稱或同組姓名" autocomplete="off" aria-label="搜尋簽到名單" />
+              <button type="button" class="clear" id="ckQClear" aria-label="清除搜尋" hidden>×</button>
+            </div>
+            <div class="seg" id="ckSeg" role="group" aria-label="簽到方別">
+              <button type="button" data-side="groom" aria-pressed="false">新郎方</button>
+              <button type="button" data-side="bride" aria-pressed="false">新娘方</button>
+              <button type="button" data-side="all" aria-pressed="false">全部</button>
+            </div>
+          </div>
+          <div class="ck-print">
+            <label id="ckPrintMainWrap"><input type="checkbox" id="ckPrintMain" />附上主桌區</label>
+            <button type="button" id="ckPrint">列印簽到表</button>
+          </div>
+          <span class="hint">列印內容為所選方別的完整名單，不受搜尋影響；可在列印視窗另存為 PDF。</span>
+        </div>
+      </div>
+      <p class="ck-flash" id="ckFlash" role="status" hidden></p>
+      <div id="ckMain"></div>
+      <section class="ck-pending" id="ckPending" hidden></section>
+    </div>
+    <div id="ckSheet"></div>
+  </div>
+  -->
   <script>
-    const DATA = { "generatedAt": "2026/11/10 00:34:48", "layout": [{ "no": 0, "x": 803, "y": 545 }, { "no": 1, "x": 1155, "y": 600 }, { "no": 2, "x": 1154, "y": 731 }, { "no": 3, "x": 1152, "y": 896 }, { "no": 4, "x": 1154, "y": 1049 }, { "no": 5, "x": 1014, "y": 876 }, { "no": 6, "x": 866, "y": 684 }, { "no": 7, "x": 864, "y": 840 }, { "no": 8, "x": 864, "y": 997 }, { "no": 9, "x": 735, "y": 684 }, { "no": 10, "x": 733, "y": 840 }, { "no": 11, "x": 733, "y": 997 }, { "no": 12, "x": 597, "y": 890 }, { "no": 13, "x": 459, "y": 688 }, { "no": 14, "x": 462, "y": 820 }, { "no": 15, "x": 462, "y": 1004 }, { "no": 16, "x": 461, "y": 1145 }], "pillars": [{ "x": 607, "y": 757 }, { "x": 1019, "y": 757 }, { "x": 607, "y": 1049 }, { "x": 1019, "y": 1049 }], "tables": { "0": { "label": null, "capacity": 12, "side": null }, "1": { "label": null, "capacity": 10, "side": "bride" }, "2": { "label": null, "capacity": 10, "side": "groom" }, "3": { "label": null, "capacity": 10, "side": "groom" }, "4": { "label": null, "capacity": 11, "side": "groom" }, "5": { "label": null, "capacity": 10, "side": "bride" }, "6": { "label": null, "capacity": 10, "side": "bride" }, "7": { "label": null, "capacity": 10, "side": "groom" }, "8": { "label": null, "capacity": 11, "side": "bride" }, "9": { "label": null, "capacity": 10, "side": "groom" }, "10": { "label": null, "capacity": 11, "side": "groom" }, "11": { "label": null, "capacity": 10, "side": "groom" }, "12": { "label": null, "capacity": 10, "side": "groom" }, "13": { "label": null, "capacity": 10, "side": "groom" }, "14": { "label": null, "capacity": 10, "side": "groom" }, "15": { "label": null, "capacity": 11, "side": "groom" }, "16": { "label": null, "capacity": 10, "side": "groom" } }, "guests": [{ "t": 0, "name": "周晉弘", "count": 1, "chairs": 0 }, { "t": 0, "name": "林婉娸", "count": 1, "chairs": 0 }, { "t": 0, "name": "曾鳳英", "count": 1, "chairs": 0 }, { "t": 0, "name": "劉志平", "count": 1, "chairs": 0 }, { "t": 0, "name": "阿姨的乾爹", "count": 1, "chairs": 0 }, { "t": 0, "name": "周羽薇", "count": 1, "chairs": 0 }, { "t": 0, "name": "何啟賢", "count": 1, "chairs": 0 }, { "t": 0, "name": "何永森", "count": 1, "chairs": 0 }, { "t": 0, "name": "郝曼麗", "count": 1, "chairs": 0 }, { "t": 0, "name": "施憲隆 (二姑丈)", "count": 1, "chairs": 0 }, { "t": 0, "name": "張勝益 (小姑丈)", "count": 1, "chairs": 0 }, { "t": 0, "name": "劉貴州 (大姑)", "count": 1, "chairs": 0 }, { "t": 1, "name": "蔡妹玉", "count": 1, "chairs": 0 }, { "t": 1, "name": "何冬惠", "count": 1, "chairs": 0 }, { "t": 1, "name": "劉姿妘", "count": 2, "chairs": 0 }, { "t": 1, "name": "吳岳信", "count": 1, "chairs": 0 }, { "t": 1, "name": "林沁嫺", "count": 2, "chairs": 0 }, { "t": 1, "name": "林照慶", "count": 1, "chairs": 0 }, { "t": 1, "name": "林俊昇", "count": 2, "chairs": 0 }, { "t": 2, "name": "葉培城.林淑惠", "count": 2, "chairs": 0 }, { "t": 2, "name": "林啟仁", "count": 2, "chairs": 0 }, { "t": 2, "name": "廖宜炳 (阿炳)", "count": 2, "chairs": 0 }, { "t": 2, "name": "陳秀勤", "count": 1, "chairs": 0 }, { "t": 2, "name": "陳信安", "count": 1, "chairs": 0 }, { "t": 2, "name": "盧淑霞.劉人豪", "count": 2, "chairs": 0 }, { "t": 3, "name": "洪永樹", "count": 2, "chairs": 0 }, { "t": 3, "name": "徐順良", "count": 2, "chairs": 0 }, { "t": 3, "name": "李如豐", "count": 2, "chairs": 0 }, { "t": 3, "name": "馮鉦喻", "count": 1, "chairs": 0 }, { "t": 3, "name": "劉永清", "count": 2, "chairs": 0 }, { "t": 3, "name": "林錫富", "count": 1, "chairs": 0 }, { "t": 4, "name": "林俊廷", "count": 5, "chairs": 1 }, { "t": 4, "name": "許榮智", "count": 2, "chairs": 0 }, { "t": 4, "name": "陳皇珠", "count": 2, "chairs": 0 }, { "t": 4, "name": "盧慶雄", "count": 2, "chairs": 0 }, { "t": 5, "name": "戴上恩", "count": 2, "chairs": 0 }, { "t": 5, "name": "紀宏憲", "count": 1, "chairs": 0 }, { "t": 5, "name": "黃新暐", "count": 2, "chairs": 0 }, { "t": 5, "name": "吳冠璋", "count": 1, "chairs": 0 }, { "t": 5, "name": "連于慧", "count": 2, "chairs": 0 }, { "t": 5, "name": "盧韋丞", "count": 1, "chairs": 0 }, { "t": 5, "name": "蘇映綺", "count": 1, "chairs": 0 }, { "t": 6, "name": "姜正益", "count": 1, "chairs": 0 }, { "t": 6, "name": "朱家樂", "count": 2, "chairs": 0 }, { "t": 6, "name": "曾富田", "count": 4, "chairs": 0 }, { "t": 6, "name": "劉旗旻", "count": 2, "chairs": 0 }, { "t": 6, "name": "周子皓", "count": 1, "chairs": 0 }, { "t": 7, "name": "李季玶", "count": 2, "chairs": 0 }, { "t": 7, "name": "許思婷", "count": 4, "chairs": 0 }, { "t": 7, "name": "鄭嘉怡", "count": 2, "chairs": 0 }, { "t": 7, "name": "江佩芝", "count": 2, "chairs": 0 }, { "t": 8, "name": "廖婉晴", "count": 1, "chairs": 0 }, { "t": 8, "name": "游棋婷", "count": 2, "chairs": 0 }, { "t": 8, "name": "林珮慈", "count": 1, "chairs": 0 }, { "t": 8, "name": "梅駱傑", "count": 1, "chairs": 0 }, { "t": 8, "name": "葉安棋", "count": 1, "chairs": 0 }, { "t": 8, "name": "李宇倫", "count": 1, "chairs": 0 }, { "t": 8, "name": "蔡承祐", "count": 1, "chairs": 0 }, { "t": 8, "name": "陳勻婷", "count": 1, "chairs": 0 }, { "t": 8, "name": "陳逸謙", "count": 1, "chairs": 0 }, { "t": 8, "name": "王靜萓", "count": 1, "chairs": 0 }, { "t": 9, "name": "何東祥", "count": 4, "chairs": 0 }, { "t": 9, "name": "劉貴洲 (大姑)", "count": 6, "chairs": 0 }, { "t": 10, "name": "陳品叡", "count": 1, "chairs": 0 }, { "t": 10, "name": "錢予婕", "count": 1, "chairs": 0 }, { "t": 10, "name": "黃靜妍", "count": 1, "chairs": 0 }, { "t": 10, "name": "廖育輝", "count": 1, "chairs": 0 }, { "t": 10, "name": "林德維", "count": 1, "chairs": 0 }, { "t": 10, "name": "吳珮君", "count": 2, "chairs": 0 }, { "t": 10, "name": "張仲承", "count": 2, "chairs": 0 }, { "t": 10, "name": "王冠軒", "count": 1, "chairs": 0 }, { "t": 10, "name": "姜仲桓", "count": 1, "chairs": 0 }, { "t": 11, "name": "傅政維", "count": 2, "chairs": 0 }, { "t": 11, "name": "張博彥", "count": 1, "chairs": 0 }, { "t": 11, "name": "黃弘育", "count": 1, "chairs": 0 }, { "t": 11, "name": "林青雅", "count": 1, "chairs": 0 }, { "t": 11, "name": "童囿維", "count": 1, "chairs": 0 }, { "t": 11, "name": "吳明遠", "count": 1, "chairs": 0 }, { "t": 11, "name": "李合軒", "count": 1, "chairs": 0 }, { "t": 11, "name": "賴仁為", "count": 1, "chairs": 0 }, { "t": 12, "name": "何佳真", "count": 8, "chairs": 0 }, { "t": 12, "name": "張淙裕", "count": 2, "chairs": 0 }, { "t": 13, "name": "郭世欽", "count": 2, "chairs": 0 }, { "t": 13, "name": "楊進生", "count": 2, "chairs": 0 }, { "t": 13, "name": "林志宏", "count": 2, "chairs": 0 }, { "t": 13, "name": "林基寶", "count": 2, "chairs": 0 }, { "t": 13, "name": "林良運", "count": 2, "chairs": 0 }, { "t": 14, "name": "許景傑", "count": 1, "chairs": 0 }, { "t": 14, "name": "劉榕林", "count": 2, "chairs": 0 }, { "t": 14, "name": "李正吉", "count": 1, "chairs": 0 }, { "t": 14, "name": "張耀興", "count": 2, "chairs": 0 }, { "t": 14, "name": "袁菁玉", "count": 2, "chairs": 0 }, { "t": 14, "name": "賴豐廷", "count": 2, "chairs": 0 }, { "t": 15, "name": "二姑", "count": 4, "chairs": 0 }, { "t": 15, "name": "小姑", "count": 5, "chairs": 1 }, { "t": 15, "name": "員外（坤碧）", "count": 2, "chairs": 0 }] }
+    const DATA = { "generatedAt": "2026/11/10 00:34:48", "layout": [{ "no": 0, "x": 803, "y": 545 }, { "no": 1, "x": 1155, "y": 600 }, { "no": 2, "x": 1154, "y": 731 }, { "no": 3, "x": 1152, "y": 896 }, { "no": 4, "x": 1154, "y": 1049 }, { "no": 5, "x": 1014, "y": 876 }, { "no": 6, "x": 866, "y": 684 }, { "no": 7, "x": 864, "y": 840 }, { "no": 8, "x": 864, "y": 997 }, { "no": 9, "x": 735, "y": 684 }, { "no": 10, "x": 733, "y": 840 }, { "no": 11, "x": 733, "y": 997 }, { "no": 12, "x": 597, "y": 890 }, { "no": 13, "x": 459, "y": 688 }, { "no": 14, "x": 462, "y": 820 }, { "no": 15, "x": 462, "y": 1004 }, { "no": 16, "x": 461, "y": 1145 }], "pillars": [{ "x": 607, "y": 757 }, { "x": 1019, "y": 757 }, { "x": 607, "y": 1049 }, { "x": 1019, "y": 1049 }], "tables": { "0": { "label": null, "capacity": 12, "side": null }, "1": { "label": null, "capacity": 10, "side": "bride" }, "2": { "label": null, "capacity": 10, "side": "groom" }, "3": { "label": null, "capacity": 10, "side": "groom" }, "4": { "label": null, "capacity": 11, "side": "groom" }, "5": { "label": null, "capacity": 10, "side": "bride" }, "6": { "label": null, "capacity": 10, "side": "bride" }, "7": { "label": null, "capacity": 10, "side": "groom" }, "8": { "label": null, "capacity": 11, "side": "bride" }, "9": { "label": null, "capacity": 10, "side": "groom" }, "10": { "label": null, "capacity": 11, "side": "groom" }, "11": { "label": null, "capacity": 10, "side": "groom" }, "12": { "label": null, "capacity": 10, "side": "groom" }, "13": { "label": null, "capacity": 10, "side": "groom" }, "14": { "label": null, "capacity": 10, "side": "groom" }, "15": { "label": null, "capacity": 11, "side": "groom" }, "16": { "label": null, "capacity": 10, "side": "groom" } }, "guests": [{ "id": "g:周晉弘", "t": 0, "name": "周晉弘", "count": 1, "chairs": 0 }, { "id": "g:林婉娸", "t": 0, "name": "林婉娸", "count": 1, "chairs": 0 }, { "id": "g:曾鳳英", "t": 0, "name": "曾鳳英", "count": 1, "chairs": 0 }, { "id": "g:劉志平", "t": 0, "name": "劉志平", "count": 1, "chairs": 0 }, { "id": "g:阿姨的乾爹", "t": 0, "name": "阿姨的乾爹", "count": 1, "chairs": 0 }, { "id": "g:周羽薇", "t": 0, "name": "周羽薇", "count": 1, "chairs": 0 }, { "id": "g:何啟賢", "t": 0, "name": "何啟賢", "count": 1, "chairs": 0 }, { "id": "g:何永森", "t": 0, "name": "何永森", "count": 1, "chairs": 0 }, { "id": "g:郝曼麗", "t": 0, "name": "郝曼麗", "count": 1, "chairs": 0 }, { "id": "g:施憲隆二姑丈", "t": 0, "name": "施憲隆 (二姑丈)", "count": 1, "chairs": 0 }, { "id": "g:張勝益小姑丈", "t": 0, "name": "張勝益 (小姑丈)", "count": 1, "chairs": 0 }, { "id": "g:劉貴州大姑", "t": 0, "name": "劉貴州 (大姑)", "count": 1, "chairs": 0 }, { "id": "g:蔡妹玉", "t": 1, "name": "蔡妹玉", "count": 1, "chairs": 0 }, { "id": "g:何冬惠", "t": 1, "name": "何冬惠", "count": 1, "chairs": 0 }, { "id": "g:劉姿妘", "t": 1, "name": "劉姿妘", "count": 2, "chairs": 0 }, { "id": "g:吳岳信", "t": 1, "name": "吳岳信", "count": 1, "chairs": 0 }, { "id": "g:林沁嫺", "t": 1, "name": "林沁嫺", "count": 2, "chairs": 0 }, { "id": "g:林照慶", "t": 1, "name": "林照慶", "count": 1, "chairs": 0 }, { "id": "g:林俊昇", "t": 1, "name": "林俊昇", "count": 2, "chairs": 0 }, { "id": "g:葉培城林淑惠", "t": 2, "name": "葉培城.林淑惠", "count": 2, "chairs": 0 }, { "id": "g:林啟仁", "t": 2, "name": "林啟仁", "count": 2, "chairs": 0 }, { "id": "g:廖宜炳阿炳", "t": 2, "name": "廖宜炳 (阿炳)", "count": 2, "chairs": 0 }, { "id": "g:陳秀勤", "t": 2, "name": "陳秀勤", "count": 1, "chairs": 0 }, { "id": "g:陳信安", "t": 2, "name": "陳信安", "count": 1, "chairs": 0 }, { "id": "g:盧淑霞劉人豪", "t": 2, "name": "盧淑霞.劉人豪", "count": 2, "chairs": 0 }, { "id": "g:洪永樹", "t": 3, "name": "洪永樹", "count": 2, "chairs": 0 }, { "id": "g:徐順良", "t": 3, "name": "徐順良", "count": 2, "chairs": 0 }, { "id": "g:李如豐", "t": 3, "name": "李如豐", "count": 2, "chairs": 0 }, { "id": "g:馮鉦喻", "t": 3, "name": "馮鉦喻", "count": 1, "chairs": 0 }, { "id": "g:劉永清", "t": 3, "name": "劉永清", "count": 2, "chairs": 0 }, { "id": "g:林錫富", "t": 3, "name": "林錫富", "count": 1, "chairs": 0 }, { "id": "g:林俊廷", "t": 4, "name": "林俊廷", "count": 5, "chairs": 1 }, { "id": "g:許榮智", "t": 4, "name": "許榮智", "count": 2, "chairs": 0 }, { "id": "g:陳皇珠", "t": 4, "name": "陳皇珠", "count": 2, "chairs": 0 }, { "id": "g:盧慶雄", "t": 4, "name": "盧慶雄", "count": 2, "chairs": 0 }, { "id": "g:戴上恩", "t": 5, "name": "戴上恩", "count": 2, "chairs": 0 }, { "id": "g:紀宏憲", "t": 5, "name": "紀宏憲", "count": 1, "chairs": 0 }, { "id": "g:黃新暐", "t": 5, "name": "黃新暐", "count": 2, "chairs": 0 }, { "id": "g:吳冠璋", "t": 5, "name": "吳冠璋", "count": 1, "chairs": 0 }, { "id": "g:連于慧", "t": 5, "name": "連于慧", "count": 2, "chairs": 0 }, { "id": "g:盧韋丞", "t": 5, "name": "盧韋丞", "count": 1, "chairs": 0 }, { "id": "g:蘇映綺", "t": 5, "name": "蘇映綺", "count": 1, "chairs": 0 }, { "id": "g:姜正益", "t": 6, "name": "姜正益", "count": 1, "chairs": 0 }, { "id": "g:朱家樂", "t": 6, "name": "朱家樂", "count": 2, "chairs": 0 }, { "id": "g:曾富田", "t": 6, "name": "曾富田", "count": 4, "chairs": 0 }, { "id": "g:劉旗旻", "t": 6, "name": "劉旗旻", "count": 2, "chairs": 0 }, { "id": "g:周子皓", "t": 6, "name": "周子皓", "count": 1, "chairs": 0 }, { "id": "g:李季玶", "t": 7, "name": "李季玶", "count": 2, "chairs": 0 }, { "id": "g:許思婷", "t": 7, "name": "許思婷", "count": 4, "chairs": 0 }, { "id": "g:鄭嘉怡", "t": 7, "name": "鄭嘉怡", "count": 2, "chairs": 0 }, { "id": "g:江佩芝", "t": 7, "name": "江佩芝", "count": 2, "chairs": 0 }, { "id": "g:廖婉晴", "t": 8, "name": "廖婉晴", "count": 1, "chairs": 0 }, { "id": "g:游棋婷", "t": 8, "name": "游棋婷", "count": 2, "chairs": 0 }, { "id": "g:林珮慈", "t": 8, "name": "林珮慈", "count": 1, "chairs": 0 }, { "id": "g:梅駱傑", "t": 8, "name": "梅駱傑", "count": 1, "chairs": 0 }, { "id": "g:葉安棋", "t": 8, "name": "葉安棋", "count": 1, "chairs": 0 }, { "id": "g:李宇倫", "t": 8, "name": "李宇倫", "count": 1, "chairs": 0 }, { "id": "g:蔡承祐", "t": 8, "name": "蔡承祐", "count": 1, "chairs": 0 }, { "id": "g:陳勻婷", "t": 8, "name": "陳勻婷", "count": 1, "chairs": 0 }, { "id": "g:陳逸謙", "t": 8, "name": "陳逸謙", "count": 1, "chairs": 0 }, { "id": "g:王靜萓", "t": 8, "name": "王靜萓", "count": 1, "chairs": 0 }, { "id": "g:何東祥", "t": 9, "name": "何東祥", "count": 4, "chairs": 0 }, { "id": "g:劉貴洲大姑", "t": 9, "name": "劉貴洲 (大姑)", "count": 6, "chairs": 0 }, { "id": "g:陳品叡", "t": 10, "name": "陳品叡", "count": 1, "chairs": 0 }, { "id": "g:錢予婕", "t": 10, "name": "錢予婕", "count": 1, "chairs": 0 }, { "id": "g:黃靜妍", "t": 10, "name": "黃靜妍", "count": 1, "chairs": 0 }, { "id": "g:廖育輝", "t": 10, "name": "廖育輝", "count": 1, "chairs": 0 }, { "id": "g:林德維", "t": 10, "name": "林德維", "count": 1, "chairs": 0 }, { "id": "g:吳珮君", "t": 10, "name": "吳珮君", "count": 2, "chairs": 0 }, { "id": "g:張仲承", "t": 10, "name": "張仲承", "count": 2, "chairs": 0 }, { "id": "g:王冠軒", "t": 10, "name": "王冠軒", "count": 1, "chairs": 0 }, { "id": "g:姜仲桓", "t": 10, "name": "姜仲桓", "count": 1, "chairs": 0 }, { "id": "g:傅政維", "t": 11, "name": "傅政維", "count": 2, "chairs": 0 }, { "id": "g:張博彥", "t": 11, "name": "張博彥", "count": 1, "chairs": 0 }, { "id": "g:黃弘育", "t": 11, "name": "黃弘育", "count": 1, "chairs": 0 }, { "id": "g:林青雅", "t": 11, "name": "林青雅", "count": 1, "chairs": 0 }, { "id": "g:童囿維", "t": 11, "name": "童囿維", "count": 1, "chairs": 0 }, { "id": "g:吳明遠", "t": 11, "name": "吳明遠", "count": 1, "chairs": 0 }, { "id": "g:李合軒", "t": 11, "name": "李合軒", "count": 1, "chairs": 0 }, { "id": "g:賴仁為", "t": 11, "name": "賴仁為", "count": 1, "chairs": 0 }, { "id": "g:何佳真", "t": 12, "name": "何佳真", "count": 8, "chairs": 0 }, { "id": "g:張淙裕", "t": 12, "name": "張淙裕", "count": 2, "chairs": 0 }, { "id": "g:郭世欽", "t": 13, "name": "郭世欽", "count": 2, "chairs": 0 }, { "id": "g:楊進生", "t": 13, "name": "楊進生", "count": 2, "chairs": 0 }, { "id": "g:林志宏", "t": 13, "name": "林志宏", "count": 2, "chairs": 0 }, { "id": "g:林基寶", "t": 13, "name": "林基寶", "count": 2, "chairs": 0 }, { "id": "g:林良運", "t": 13, "name": "林良運", "count": 2, "chairs": 0 }, { "id": "g:許景傑", "t": 14, "name": "許景傑", "count": 1, "chairs": 0 }, { "id": "g:劉榕林", "t": 14, "name": "劉榕林", "count": 2, "chairs": 0 }, { "id": "g:李正吉", "t": 14, "name": "李正吉", "count": 1, "chairs": 0 }, { "id": "g:張耀興", "t": 14, "name": "張耀興", "count": 2, "chairs": 0 }, { "id": "g:袁菁玉", "t": 14, "name": "袁菁玉", "count": 2, "chairs": 0 }, { "id": "g:賴豐廷", "t": 14, "name": "賴豐廷", "count": 2, "chairs": 0 }, { "id": "g:二姑", "t": 15, "name": "二姑", "count": 4, "chairs": 0 }, { "id": "g:小姑", "t": 15, "name": "小姑", "count": 5, "chairs": 1 }, { "id": "g:員外坤碧", "t": 15, "name": "員外（坤碧）", "count": 2, "chairs": 0 }] }
     // 站牌圖座標（依參考圖繪製）
     const POS = {
       0: [484, 305],
@@ -427,8 +964,8 @@
     const visibleNos = () => NOS.filter(inSide)
     const isHit = (g) => state.q !== '' && norm(g.name).includes(state.q)
     const hitTables = () => new Set(DATA.guests.filter((g) => inSide(g.t) && isHit(g)).map((g) => g.t))
-    function highlight(name) {
-      if (!state.q) return esc(name)
+    function highlight(name, q = state.q) {
+      if (!q) return esc(name)
       // 以去空白後的字元比對，逐字標記符合的區段
       const chars = [...name]
       const flat = []
@@ -436,7 +973,7 @@
       const str = flat.map((x) => x[0]).join('')
       const hit = new Set()
       let from = 0, k
-      while ((k = str.indexOf(state.q, from)) !== -1) { for (let j = k; j < k + state.q.length; j++) hit.add(flat[j][1]); from = k + 1 }
+      while ((k = str.indexOf(q, from)) !== -1) { for (let j = k; j < k + q.length; j++) hit.add(flat[j][1]); from = k + 1 }
       return chars.map((c, i) => (hit.has(i) ? `<mark>${esc(c)}</mark>` : esc(c))).join('').replace(/<\/mark><mark>/g, '')
     }
 
@@ -527,7 +1064,7 @@
         ${side ? `<span class="card-side" style="color:${side.color}">${side.label}</span>` : ''}
         <span class="card-count">${seated(no)}/${cap(no)} 人</span>
       </div>
-      ${gs.length ? `<ul class="guests">${gs.map((g) => `<li><span>${highlight(g.name)}</span><span class="x">×${g.count}</span></li>`).join('')}</ul>` : '<p class="empty">尚未安排</p>'}
+      ${gs.length ? `<ul class="guests"><li class="guests-head"><span class="guest-name">姓名</span><span class="x">預排</span><span class="actual">實到</span></li>${gs.map((g) => `<li><span class="guest-name">${highlight(g.name)}</span><span class="x">×${g.count}</span><span class="actual"></span></li>`).join('')}</ul>` : '<p class="empty">尚未安排</p>'}
       <div class="note"><div>備註</div>${total ? `<div class="chair">兒童座椅 ${total} 張（${chairs.map((g) => `${esc(g.name)} ${g.chairs}`).join('、')}）</div>` : ''}</div>
     </div>`
       }).join('')
@@ -574,13 +1111,550 @@
       render()
     })
     qClear.addEventListener('click', () => { qInput.value = ''; state.q = ''; qClear.hidden = true; render(); qInput.focus() })
-    document.querySelectorAll('.seg button').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('#viewSeating .seg button').forEach((b) => b.addEventListener('click', () => {
       state.side = b.dataset.side
-      document.querySelectorAll('.seg button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)))
+      document.querySelectorAll('#viewSeating .seg button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)))
       render()
     }))
 
+    /* 簽到表暫停使用（路由、簽到、紙本簽到表）
+    // ===== 路由：用 hash，部署在 /WeddingSeat/ 子路徑時重新整理不會 404 =====
+    const currentRoute = () => (location.hash === '#/checkin' ? 'checkin' : 'seating')
+    function applyRoute() {
+      const r = currentRoute()
+      document.getElementById('viewSeating').hidden = r !== 'seating'
+      document.getElementById('viewCheckin').hidden = r !== 'checkin'
+      document.body.classList.toggle('route-checkin', r === 'checkin')
+      document.title = r === 'checkin' ? '婚宴簽到表' : '婚宴座位表'
+      document.querySelectorAll('.topnav a').forEach((a) => {
+        if (a.dataset.route === r) a.setAttribute('aria-current', 'page')
+        else a.removeAttribute('aria-current')
+      })
+      if (r === 'checkin') { ckReload(); renderCk() }
+    }
+
+    // ===== 簽到 =====
+    const CK_KEY = 'weddingSeat.checkin.v1'
+    const CK_SIDE_KEY = 'weddingSeat.checkin.side'
+    const SAVE_FAILED = '儲存失敗，輸入內容已保留。請確認瀏覽器允許本機儲存後再試一次；若仍失敗請改用紙本記錄。'
+    const loose = (s) => norm(s).replace(/[.．・·、,，()（）]/g, '')
+
+    // 組別 ID 寫在 DATA.guests[].id。重新貼上不含 id 的名單時，以姓名推得同一個 ID。
+    const idCount = new Map()
+    DATA.guests.forEach((g) => {
+      const id = g.id || `g:${loose(g.name)}`
+      const n = (idCount.get(id) || 0) + 1
+      idCount.set(id, n)
+      g.id = n > 1 ? `${id}#${n}` : id
+    })
+    const guestById = new Map(DATA.guests.map((g) => [g.id, g]))
+    const strokeOrder = new Intl.Collator('zh-Hant-TW-u-co-stroke').compare
+    const GROUPS = [...DATA.guests].sort((a, b) => a.t - b.t || strokeOrder(a.name, b.name))
+
+    const sideOf = (g) => info(g.t).side || null
+    const inCkSide = (g, side) => side === 'all' || !sideOf(g) || sideOf(g) === side
+    const sideTag = (g) => {
+      const s = SIDE[sideOf(g)]
+      return s ? `<span class="ck-tag" style="color:${s.color}">${s.label}</span>` : '<span class="ck-tag">未分方別</span>'
+    }
+    const mainTag = (g) => (g.t === 0 ? '<span class="ck-tag main">主桌</span>' : '')
+    const chairText = (g) => (g.chairs > 0 ? `兒童椅 ${g.chairs} 張` : '')
+    const newOp = () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
+    const clock = (t) => new Date(t).toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', hour12: false })
+
+    function readStore() {
+      const raw = localStorage.getItem(CK_KEY)
+      const s = raw ? JSON.parse(raw) : {}
+      return { records: s.records || {}, pending: s.pending || [] }
+    }
+    function readSide() {
+      try {
+        const v = localStorage.getItem(CK_SIDE_KEY)
+        return ['groom', 'bride', 'all'].includes(v) ? v : 'all'
+      } catch (e) { return 'all' }
+    }
+
+    const ck = { q: '', side: readSide(), printMain: false, panel: null, flash: '', store: { records: {}, pending: [] }, loadFailed: false }
+
+    function ckReload() {
+      try { ck.store = readStore(); ck.loadFailed = false } catch (e) { ck.loadFailed = true }
+    }
+    // 每次寫入都先重讀，寫入成功才更新畫面狀態；失敗時不動畫面與輸入。
+    function commit(mutate) {
+      try {
+        const s = readStore()
+        const out = mutate(s)
+        localStorage.setItem(CK_KEY, JSON.stringify(s))
+        ck.store = s
+        ck.loadFailed = false
+        return { ok: true, out }
+      } catch (e) { return { ok: false } }
+    }
+
+    function saveAttendance(id, mode, n, note, op) {
+      return commit((s) => {
+        const prev = s.records[id]
+        const same = prev && prev.log.find((l) => l.op === op)
+        if (same) return same // 同一次送出只計一次
+        if (mode === 'first' && prev) return { stale: true }
+        const rec = prev || { actual: 0, proxy: false, note: '', log: [] }
+        const total = mode === 'first' || mode === 'append' ? rec.actual + n : n
+        const entry = { op, at: Date.now(), mode, n, total }
+        rec.actual = total
+        rec.proxy = mode === 'proxy'
+        rec.note = note
+        rec.log.push(entry)
+        s.records[id] = rec
+        return entry
+      })
+    }
+
+    function mergePending(pid, gid, addCount) {
+      return commit((s) => {
+        const p = s.pending.find((x) => x.id === pid)
+        if (!p || p.status === 'merged') return { dup: true }
+        const rec = s.records[gid] || { actual: 0, proxy: false, note: '', log: [] }
+        const n = addCount ? p.count : 0
+        const total = rec.actual + n
+        if (n > 0) rec.proxy = false
+        if (p.note) rec.note = [rec.note, `暫記：${p.note}`].filter(Boolean).join('；')
+        rec.actual = total
+        rec.log.push({ op: `merge:${pid}`, at: Date.now(), mode: 'merge', n, total })
+        s.records[gid] = rec
+        p.status = 'merged'
+        p.mergedInto = gid
+        p.mergedAt = Date.now()
+        p.addedCount = n
+        return { n, total }
+      })
+    }
+
+    const ckMain = () => document.getElementById('ckMain')
+    const setFlash = (t) => { ck.flash = t }
+
+    function parseCount(raw, min) {
+      const v = String(raw).trim()
+      if (!/^\d{1,3}$/.test(v)) return null
+      const n = Number(v)
+      return n >= min ? n : null
+    }
+
+    function statusText(rec) {
+      if (!rec) return '<span class="ck-status" style="color:var(--muted)">未簽到</span>'
+      if (rec.proxy) return '<span class="ck-status" style="color:var(--bride)">代包未到</span>'
+      return '<span class="ck-status" style="color:#4B6B35">已簽到</span>'
+    }
+
+    function renderCkStats() {
+      const scope = DATA.guests.filter((g) => inCkSide(g, ck.side))
+      const recs = ck.store.records
+      const reg = scope.filter((g) => recs[g.id])
+      const actual = reg.reduce((s, g) => s + recs[g.id].actual, 0)
+      const plan = scope.reduce((s, g) => s + g.count, 0)
+      const proxy = reg.filter((g) => recs[g.id].proxy).length
+      const open = ck.store.pending.filter((p) => p.status !== 'merged' && (ck.side === 'all' || p.side === ck.side))
+      const label = ck.side === 'all' ? '全部' : SIDE[ck.side].label
+      const orphan = Object.keys(recs).filter((id) => !guestById.has(id)).length
+      document.getElementById('ckStats').textContent = `${label}：已登記 ${reg.length}／${scope.length} 組・實到 ${actual} 位／預排 ${plan} 位・代包未到 ${proxy} 組・待核對 ${open.length} 筆（${open.reduce((s, p) => s + p.count, 0)} 位，未計入實到）${orphan ? `・有 ${orphan} 筆紀錄對不到目前名單，請通知總召` : ''}`
+      document.getElementById('ckLoadErr').hidden = !ck.loadFailed
+    }
+
+    function renderCk() {
+      const open = !!ck.panel
+      document.getElementById('ckTools').hidden = open
+      document.getElementById('ckQClear').hidden = !document.getElementById('ckQ').value
+      document.querySelectorAll('#ckSeg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.side === ck.side)))
+      document.getElementById('ckPrintMainWrap').hidden = ck.side === 'all' || !DATA.guests.some((g) => !sideOf(g))
+      document.getElementById('ckPrintMain').checked = ck.printMain
+      document.getElementById('ckPrint').textContent = ck.side === 'all' ? '列印簽到表' : `列印簽到表（${SIDE[ck.side].label}）`
+      const flash = document.getElementById('ckFlash')
+      flash.hidden = open || !ck.flash
+      flash.textContent = ck.flash
+      renderCkStats()
+      if (!open) { renderCkList(); renderCkPending() } else document.getElementById('ckPending').hidden = true
+      if (ck.panel && ck.panel.needsRender) { ck.panel.needsRender = false; renderCkPanel() }
+    }
+
+    function rowHtml(g, q, attrs) {
+      const rec = ck.store.records[g.id]
+      return `<button type="button" class="ck-row${rec ? ' is-done' : ''}" ${attrs}>
+        <span class="ck-row-top"><span class="ck-name">${highlight(g.name, q)}</span>${mainTag(g)}${sideTag(g)}${statusText(rec)}</span>
+        <span class="ck-row-meta"><span>${base(g.t)}</span><span>預排 <b>${g.count}</b> 位</span><span>實到累計 <b>${rec ? rec.actual : '—'}</b></span>${g.chairs > 0 ? `<span class="ck-chair">${chairText(g)}</span>` : ''}</span>
+        ${rec && rec.note ? `<span class="ck-usernote" style="display:block">備註：${esc(rec.note)}</span>` : ''}
+      </button>`
+    }
+
+    function renderCkList() {
+      const q = ck.q
+      const found = GROUPS.filter((g) => inCkSide(g, ck.side) && (!q || loose(g.name).includes(q)))
+      const elsewhere = q && !found.length ? GROUPS.filter((g) => loose(g.name).includes(q)).length : 0
+      const head = q ? (found.length ? `找到 ${found.length} 組，請核對後選取` : `目前方別查無「${esc(document.getElementById('ckQ').value)}」`) : `共 ${found.length} 組，依桌號排序`
+      ckMain().innerHTML = `<div class="ck-listhead"><span>${head}${elsewhere ? `（另一方有 ${elsewhere} 筆符合，可切換方別查看）` : ''}</span><button type="button" class="btn-line" data-act="open-pending">查無姓名，暫記</button></div>
+        <div class="ck-rows">${found.map((g) => rowHtml(g, q, `data-act="open-group" data-id="${esc(g.id)}"`)).join('')}</div>`
+    }
+
+    function renderCkPending() {
+      const sec = document.getElementById('ckPending')
+      const list = ck.store.pending.filter((p) => ck.side === 'all' || p.side === ck.side)
+      const open = list.filter((p) => p.status !== 'merged')
+      const merged = list.filter((p) => p.status === 'merged')
+      sec.hidden = !list.length
+      if (!list.length) { sec.innerHTML = ''; return }
+      const line = (p) => `<strong>${esc(p.name)}</strong>・${SIDE[p.side].label}・${p.count} 位・${clock(p.createdAt)}${p.note ? `・${esc(p.note)}` : ''}`
+      sec.innerHTML = `<h3>待核對（${open.length} 筆，由總召確認桌位）</h3>
+        ${open.map((p) => `<div class="ck-pending-item"><span>${line(p)}</span><button type="button" data-act="open-merge" data-id="${esc(p.id)}">核對併入</button></div>`).join('') || '<p class="ck-sub">目前沒有待核對的紀錄。</p>'}
+        ${merged.length ? `<details><summary>已併入（${merged.length} 筆）</summary>${merged.map((p) => `<div class="ck-pending-item merged"><span>${line(p)}　→ 已併入 ${esc((guestById.get(p.mergedInto) || { name: p.mergedInto }).name)}，計入 ${p.addedCount} 位</span></div>`).join('')}</details>` : ''}`
+    }
+
+    function openPanel(panel) {
+      ckReload()
+      ck.flash = ''
+      ck.panel = { ...panel, needsRender: true }
+      renderCk()
+      window.scrollTo(0, 0)
+    }
+    function closePanel() {
+      ck.panel = null
+      ckReload()
+      renderCk()
+    }
+
+    function renderCkPanel() {
+      const p = ck.panel
+      if (p.type === 'group') return renderGroupPanel(p)
+      if (p.type === 'done') return renderDonePanel(p)
+      if (p.type === 'pending') return renderPendingPanel(p)
+      if (p.type === 'merge') return renderMergePanel(p)
+    }
+
+    function renderGroupPanel(p) {
+      const g = guestById.get(p.id)
+      const rec = ck.store.records[g.id]
+      p.mode = rec ? 'append' : 'first'
+      const noteField = `<label class="ck-field">備註（選填）<textarea id="ckNote" rows="2">${esc(rec ? rec.note : '')}</textarea></label>`
+      const msg = '<div id="ckOver"></div><div class="ck-alert" id="ckErr" role="alert" hidden></div>'
+      const head = `<h3>${esc(g.name)}</h3>
+        <div class="ck-row-top">${mainTag(g)}${sideTag(g)}${statusText(rec)}</div>
+        <div class="ck-row-meta"><span>${base(g.t)}</span><span>預排 <b>${g.count}</b> 位</span>${g.chairs > 0 ? `<span class="ck-chair">${chairText(g)}</span>` : ''}</div>`
+      const body = rec
+        ? `<p class="ck-tally">實到累計 <b>${rec.actual}</b> 位／預排 ${g.count} 位${rec.proxy ? '（代包未到）' : ''}</p>
+          <div class="seg ck-modes" role="group" aria-label="登記方式">
+            <button type="button" data-act="mode" data-mode="append" aria-pressed="true">追加到場</button>
+            <button type="button" data-act="mode" data-mode="correct" aria-pressed="false">更正實到累計</button>
+          </div>
+          <form id="ckForm" novalidate>
+            <label class="ck-field"><span id="ckNumLabel">本次追加人數</span><input id="ckNum" inputmode="numeric" autocomplete="off" /></label>
+            <p class="ck-sub" id="ckModeHint">填這次新到的人數，會加到累計上。</p>
+            ${noteField}${msg}
+            <div class="ck-actions">
+              <button type="submit">儲存</button>
+              ${rec.proxy ? '' : '<button type="button" class="btn-line" data-act="proxy">改為代包未到</button>'}
+              <button type="button" class="btn-line" data-act="note-only">只存備註</button>
+            </div>
+          </form>`
+        : `<button type="button" class="ck-primary" data-act="confirm-plan">確認預排 ${g.count} 位到場</button>
+          <form id="ckForm" novalidate>
+            <label class="ck-field">或填本次實到人數<input id="ckNum" inputmode="numeric" autocomplete="off" /></label>
+            ${noteField}${msg}
+            <div class="ck-actions">
+              <button type="submit">儲存人數</button>
+              <button type="button" class="btn-line" data-act="proxy">代包未到</button>
+            </div>
+          </form>`
+      ckMain().innerHTML = `<button type="button" class="btn-line ck-back" data-act="back">← 返回名單</button><section class="ck-panel">${head}${body}</section>`
+    }
+
+    function renderDonePanel(p) {
+      const g = guestById.get(p.id)
+      const e = p.entry
+      const over = e.total - g.count
+      const proxy = e.mode === 'proxy'
+      const count = proxy ? '代包未到・實到 0 位' : e.mode === 'correct' ? `實到累計更正為 ${e.total} 位` : `本次 ${e.n} 位`
+      ckMain().innerHTML = `<section class="ck-panel ck-done" role="status">
+        <div class="ck-done-label">${proxy ? '不需帶位' : '請帶位至'}</div>
+        <div class="ck-done-table">${base(g.t)}</div>
+        <div class="ck-done-count">${count}</div>
+        <div class="ck-done-name">${esc(g.name)}・實到累計 ${e.total}／預排 ${g.count} 位</div>
+        ${g.chairs > 0 && !proxy ? `<div class="ck-warn"><span class="ck-chair">${chairText(g)}</span></div>` : ''}
+        ${over > 0 ? `<div class="ck-warn">超過預排 ${over} 位，請總召確認座位。</div>` : ''}
+        <div class="ck-actions"><button type="button" data-act="next">下一位</button></div>
+      </section>`
+      ckMain().querySelector('[data-act="next"]').focus()
+    }
+
+    function renderPendingPanel(p) {
+      const preset = ck.side === 'all' ? '' : ck.side
+      ckMain().innerHTML = `<button type="button" class="btn-line ck-back" data-act="back">← 返回名單</button>
+      <section class="ck-panel"><h3>暫記查無姓名</h3><p class="ck-sub">標為「待核對」，由總召確認桌位。人數暫不計入實到。</p>
+        <form id="ckPendingForm" novalidate>
+          <label class="ck-field">姓名<input id="ckPName" autocomplete="off" value="${esc(p.presetName || '')}" /></label>
+          <div class="seg ck-modes" role="group" aria-label="方別">
+            ${['groom', 'bride'].map((k) => `<button type="button" data-act="pending-side" data-side="${k}" aria-pressed="${k === preset}">${SIDE[k].label}</button>`).join('')}
+          </div>
+          <label class="ck-field">人數<input id="ckPCount" inputmode="numeric" autocomplete="off" /></label>
+          <label class="ck-field">備註（選填）<textarea id="ckPNote" rows="2"></textarea></label>
+          <div class="ck-alert" id="ckErr" role="alert" hidden></div>
+          <div class="ck-actions"><button type="submit">暫記</button></div>
+        </form></section>`
+      p.side = preset
+    }
+
+    function renderMergePanel(p) {
+      const item = ck.store.pending.find((x) => x.id === p.pid)
+      const g = p.gid && guestById.get(p.gid)
+      let body
+      if (g) {
+        const rec = ck.store.records[g.id]
+        const now = rec ? rec.actual : 0
+        const after = now + item.count
+        const over = after > g.count ? `<div class="ck-warn">計入後累計 ${after} 位，超過預排 ${g.count} 位，請總召確認座位。</div>` : ''
+        body = `<p class="ck-tally">${esc(g.name)}・${base(g.t)}<br />實到累計 <b>${now}</b> 位／預排 ${g.count} 位${rec ? '' : '（尚未簽到）'}</p>${over}
+          ${rec ? '<div class="ck-warn">此組已有簽到紀錄。若暫記的人已算在累計內，請選「不加人數」，避免重複統計。</div>' : ''}
+          <div class="ck-alert" id="ckErr" role="alert" hidden></div>
+          <div class="ck-actions">
+            <button type="button" data-act="merge" data-add="1">併入並計入 ${item.count} 位${rec ? `（累計變 ${after} 位）` : ''}</button>
+            ${rec ? `<button type="button" class="btn-line" data-act="merge" data-add="0">併入，不加人數（維持 ${now} 位）</button>` : ''}
+          </div>
+          <div class="ck-actions"><button type="button" class="btn-line" data-act="merge-rechoose">改選其他組別</button></div>`
+      } else {
+        body = `<label class="ck-field">搜尋要併入的正式組別<input id="ckMergeQ" autocomplete="off" value="${esc(p.q || '')}" /></label><div class="ck-rows" id="ckMergeList" style="margin-top:10px"></div>`
+      }
+      ckMain().innerHTML = `<button type="button" class="btn-line ck-back" data-act="back">← 返回名單</button>
+        <section class="ck-panel"><h3>核對併入</h3><p class="ck-sub">暫記：${esc(item.name)}・${SIDE[item.side].label}・${item.count} 位${item.note ? `・${esc(item.note)}` : ''}</p>${body}</section>`
+      if (!g) { renderMergeList(p); document.getElementById('ckMergeQ').focus() }
+    }
+
+    function renderMergeList(p) {
+      const q = loose(p.q || '')
+      const found = q ? GROUPS.filter((g) => loose(g.name).includes(q)) : GROUPS
+      document.getElementById('ckMergeList').innerHTML = found.map((g) => rowHtml(g, q, `data-act="merge-pick" data-id="${esc(g.id)}"`)).join('')
+    }
+
+    function showErr(text) {
+      const el = document.getElementById('ckErr')
+      el.textContent = text
+      el.hidden = false
+    }
+    function clearMsg() {
+      const err = document.getElementById('ckErr')
+      if (err) err.hidden = true
+      const over = document.getElementById('ckOver')
+      if (over) over.innerHTML = ''
+    }
+
+    function submitAttendance(mode, raw, confirmed) {
+      const p = ck.panel
+      const g = guestById.get(p.id)
+      clearMsg()
+      ckReload()
+      const rec = ck.store.records[g.id]
+      let n = 0
+      if (mode !== 'proxy') {
+        n = parseCount(raw, mode === 'correct' ? 0 : 1)
+        if (n === null) {
+          document.getElementById('ckNum').focus()
+          return showErr(mode === 'correct' ? '請填 0 以上的整數。' : mode === 'first' ? '請填 1 以上的整數；未到場請按「代包未到」。' : '追加人數請填正整數。')
+        }
+      }
+      const now = rec ? rec.actual : 0
+      const total = mode === 'first' || mode === 'append' ? now + n : n
+      const reason = total > g.count
+        ? `累計 ${total} 位，超過預排 ${g.count} 位。確認後仍會儲存實際人數，並請總召確認座位。`
+        : mode === 'proxy' && now > 0 ? `此組目前實到 ${now} 位，改為代包未到後實到會變 0 位。` : ''
+      if (reason && !confirmed) {
+        p.confirming = { mode, raw }
+        document.getElementById('ckOver').innerHTML = `<div class="ck-warn" role="alert">${reason}<div class="ck-actions"><button type="button" data-act="over-yes">確認儲存</button><button type="button" class="btn-line" data-act="over-no">返回修改</button></div></div>`
+        return
+      }
+      const res = saveAttendance(g.id, mode, n, document.getElementById('ckNote').value.trim(), p.op)
+      if (!res.ok) return showErr(SAVE_FAILED)
+      if (res.out.stale) {
+        ck.panel = { ...p, op: newOp(), needsRender: true }
+        renderCk()
+        return showErr('此組剛剛已有簽到紀錄，請確認累計後改用追加或更正。')
+      }
+      ck.panel = { type: 'done', id: g.id, entry: res.out, shownAt: Date.now(), needsRender: true }
+      renderCk()
+      window.scrollTo(0, 0)
+    }
+
+    function submitPending() {
+      const p = ck.panel
+      clearMsg()
+      const name = document.getElementById('ckPName').value.trim()
+      if (!name) return showErr('請填姓名。')
+      if (!p.side) return showErr('請選擇方別。')
+      const count = parseCount(document.getElementById('ckPCount').value, 0)
+      if (count === null) return showErr('人數請填 0 以上的整數。')
+      const note = document.getElementById('ckPNote').value.trim()
+      const id = `p:${p.op}`
+      const res = commit((s) => {
+        if (!s.pending.some((x) => x.id === id)) s.pending.push({ id, name, side: p.side, count, note, createdAt: Date.now(), status: 'pending' })
+      })
+      if (!res.ok) return showErr(SAVE_FAILED)
+      setFlash(`已暫記 ${name}，${count} 位，待核對。`)
+      ck.panel = null
+      renderCk()
+    }
+
+    function ckClick(e) {
+      const t = e.target.closest('[data-act]')
+      if (!t) return
+      const p = ck.panel
+      switch (t.dataset.act) {
+        case 'open-group': return openPanel({ type: 'group', id: t.dataset.id, op: newOp() })
+        case 'open-pending': return openPanel({ type: 'pending', op: newOp(), presetName: document.getElementById('ckQ').value.trim() })
+        case 'open-merge': return openPanel({ type: 'merge', pid: t.dataset.id, q: '', gid: null })
+        case 'back': return closePanel()
+        case 'next': {
+          if (Date.now() - p.shownAt < 500) return // 連點儲存的第二下不可跳過交接畫面
+          const q = document.getElementById('ckQ')
+          q.value = ''
+          ck.q = ''
+          closePanel()
+          return q.focus()
+        }
+        case 'mode': {
+          p.mode = t.dataset.mode
+          t.parentNode.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === t)))
+          document.getElementById('ckNumLabel').textContent = p.mode === 'append' ? '本次追加人數' : '更正後的實到累計'
+          document.getElementById('ckModeHint').textContent = p.mode === 'append' ? '填這次新到的人數，會加到累計上。' : '填目前實際的總人數，可填 0。紙本補登請用這裡，填最後累計。'
+          clearMsg()
+          return document.getElementById('ckNum').focus()
+        }
+        case 'confirm-plan': return submitAttendance('first', String(guestById.get(p.id).count), false)
+        case 'proxy': return submitAttendance('proxy', '0', false)
+        case 'over-yes': return submitAttendance(p.confirming.mode, p.confirming.raw, true)
+        case 'over-no': return clearMsg()
+        case 'note-only': {
+          clearMsg()
+          const note = document.getElementById('ckNote').value.trim()
+          const res = commit((s) => { s.records[p.id].note = note })
+          if (!res.ok) return showErr(SAVE_FAILED)
+          setFlash('備註已儲存。')
+          return closePanel()
+        }
+        case 'pending-side':
+          p.side = t.dataset.side
+          t.parentNode.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === t)))
+          return
+        case 'merge-pick':
+          p.gid = t.dataset.id
+          return renderCkPanel()
+        case 'merge-rechoose':
+          p.gid = null
+          return renderCkPanel()
+        case 'merge': {
+          const res = mergePending(p.pid, p.gid, t.dataset.add === '1')
+          if (!res.ok) return showErr(SAVE_FAILED)
+          setFlash(res.out.dup ? '這筆暫記先前已併入。' : `已併入，計入 ${res.out.n} 位，目前累計 ${res.out.total} 位。`)
+          ck.panel = null
+          return renderCk()
+        }
+      }
+    }
+
+    function ckSubmit(e) {
+      e.preventDefault()
+      if (e.target.id === 'ckPendingForm') return submitPending()
+      const p = ck.panel
+      submitAttendance(p.mode, document.getElementById('ckNum').value, false)
+    }
+
+    // ===== 紙本簽到表：先量每列高度再分頁，每頁自帶表頭、頁碼，也不會切斷一筆資料 =====
+    const SHEET_BLANKS = 6
+    const SHEET_PAGE_MM = 266 // A4 高 297 − 上下邊界 16，再保留餘裕
+    const sheetRow = (g) => `<tr><td><span class="sheet-box"></span></td><td class="sheet-name">${esc(g.name)}</td><td>${g.t === 0 ? '主桌' : g.t}</td><td>${g.count}</td><td></td><td class="sheet-note">${chairText(g)}</td></tr>`
+    const sheetBlank = '<tr><td><span class="sheet-box"></span></td><td class="sheet-name"></td><td></td><td></td><td></td><td class="sheet-note"></td></tr>'
+
+    function sheetSections() {
+      const rows = (test, blanks) => [...GROUPS.filter(test).map(sheetRow), ...Array(blanks).fill(sheetBlank)]
+      const side = (k) => ({ title: SIDE[k].label, rows: rows((g) => sideOf(g) === k, SHEET_BLANKS) })
+      const main = { title: '主桌（未分方別）', rows: rows((g) => !sideOf(g), 0) }
+      const list = ck.side === 'all' ? [side('groom'), side('bride'), main] : ck.printMain ? [side(ck.side), main] : [side(ck.side)]
+      return list.filter((s) => s.rows.length)
+    }
+
+    function sheetPage(title, no, total, rows) {
+      return `<section class="sheet-page">
+        <header class="sheet-head"><strong>簽到表｜${title}</strong><span>名單資料時間 ${esc(DATA.generatedAt)}</span><span>第 ${no}／${total} 頁</span></header>
+        <table class="sheet-table">
+          <colgroup><col style="width:13mm" /><col style="width:56mm" /><col style="width:18mm" /><col style="width:24mm" /><col style="width:30mm" /><col style="width:53mm" /></colgroup>
+          <thead><tr><th>已到</th><th>姓名</th><th>桌號</th><th>預排人數</th><th>實到累計</th><th>備註</th></tr></thead>
+          <tbody>${rows.join('')}</tbody>
+        </table>
+        <footer class="sheet-foot">紙本接手時間：＿＿＿：＿＿＿　分批到場在實到累計欄寫「3 → 5」。補登電子版時用「更正實到累計」填最後累計，不要當追加人數。</footer>
+      </section>`
+    }
+
+    function buildSheet() {
+      const limit = SHEET_PAGE_MM * 96 / 25.4
+      const sections = sheetSections()
+      const probe = document.createElement('div')
+      probe.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden'
+      probe.innerHTML = sections.map((s) => sheetPage(s.title, 1, 1, s.rows)).join('')
+      document.body.appendChild(probe)
+      const pages = []
+      probe.querySelectorAll('.sheet-page').forEach((el, i) => {
+        const trs = [...el.querySelectorAll('tbody tr')]
+        const heights = trs.map((tr) => tr.getBoundingClientRect().height)
+        const frame = el.getBoundingClientRect().height - heights.reduce((a, b) => a + b, 0)
+        let cur = []
+        let used = frame
+        sections[i].rows.forEach((row, r) => {
+          if (cur.length && used + heights[r] > limit) { pages.push({ title: sections[i].title, rows: cur }); cur = []; used = frame }
+          cur.push(row)
+          used += heights[r]
+        })
+        pages.push({ title: sections[i].title, rows: cur })
+      })
+      probe.remove()
+      document.getElementById('ckSheet').innerHTML = pages.map((p, i) => sheetPage(p.title, i + 1, pages.length, p.rows)).join('')
+    }
+
+    async function printSheet() {
+      if (document.fonts && document.fonts.ready) await document.fonts.ready
+      buildSheet()
+      const d = new Date()
+      const p = (n) => String(n).padStart(2, '0')
+      const old = document.title
+      const tag = ck.side === 'all' ? '全部' : SIDE[ck.side].label
+      document.title = `簽到表_${tag}_${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}`
+      window.addEventListener('afterprint', () => { document.title = old }, { once: true })
+      window.print()
+    }
+
+    const ckQ = document.getElementById('ckQ')
+    ckQ.addEventListener('input', () => {
+      ck.q = loose(ckQ.value)
+      ck.flash = ''
+      renderCk()
+    })
+    document.getElementById('ckQClear').addEventListener('click', () => { ckQ.value = ''; ck.q = ''; renderCk(); ckQ.focus() })
+    document.querySelectorAll('#ckSeg button').forEach((b) => b.addEventListener('click', () => {
+      ck.side = b.dataset.side
+      ck.flash = ''
+      try { localStorage.setItem(CK_SIDE_KEY, ck.side) } catch (e) {
+        // 只影響下次預設方別
+      }
+      renderCk()
+    }))
+    document.getElementById('ckPrintMain').addEventListener('change', (e) => { ck.printMain = e.target.checked })
+    document.getElementById('ckPrint').addEventListener('click', printSheet)
+    document.getElementById('viewCheckin').addEventListener('click', ckClick)
+    document.getElementById('viewCheckin').addEventListener('submit', ckSubmit)
+    document.getElementById('viewCheckin').addEventListener('input', (e) => {
+      if (e.target.id === 'ckNum') clearMsg()
+      if (e.target.id === 'ckMergeQ') { ck.panel.q = e.target.value; renderMergeList(ck.panel) }
+    })
+    window.addEventListener('storage', (e) => { if (e.key === CK_KEY && !ck.panel && currentRoute() === 'checkin') { ckReload(); renderCk() } })
+    window.addEventListener('beforeprint', () => { if (currentRoute() === 'checkin') buildSheet() })
+    window.addEventListener('hashchange', applyRoute)
+
+    */
+
     render()
+    // applyRoute()
   </script>
 </body>
 
